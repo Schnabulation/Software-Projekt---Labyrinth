@@ -2,12 +2,14 @@ package algorithmus;
 
 import labyrinth.Labyrinth;
 
-public class Backtracking implements AlgInterface {
+public class Backtracking extends Algorithmus {
 
 	@Override
-	public int nextStep(String position) {
+	public void findeWeg() {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
+
+
 	
 }

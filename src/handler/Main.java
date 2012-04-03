@@ -33,7 +33,8 @@ public class Main {
 	}
 	
 	public void solveLab(AlgInterface algorithm, Labyrinth lab) {
-		
+		System.out.println("Original Labyrinth");
+		labyrinth.zeichnen();
 	}
 
 }
