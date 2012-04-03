@@ -1,19 +1,13 @@
-package Algorithmus;
+package algorithmus;
 
-import Labyrinth.Labyrinth;
+import labyrinth.Labyrinth;
 
-public class Backtracking {
+public class Backtracking implements AlgInterface {
 
-	private Labyrinth labyrinth;
-	static int step;
-	
-	public Backtracking(Labyrinth labyrinth){
-		this.labyrinth = labyrinth;
-		step = 0;
-	}
-	
-	public void wegFinden(){
-		
+	@Override
+	public int nextStep(String position) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

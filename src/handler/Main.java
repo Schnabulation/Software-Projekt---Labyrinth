@@ -1,10 +1,13 @@
-package Labyrinth;
+package handler;
 
-import Algorithmus.Backtracking;
+import labyrinth.Labyrinth;
+import algorithmus.AlgInterface;
+import algorithmus.Backtracking;
 
 public class Main {
 
 	private static Labyrinth labyrinth;
+	private static AlgInterface alg;
 	private static char[][] lab={
 			  {'0','0','0','0','0','0','0','0','0','0','0','0'},
 			  {'0','0','0','1','0','0','1','1','0','0','0','0'},
@@ -23,10 +26,13 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		labyrinth=new Labyrinth(lab);
-		labyrinth.zeichnen();
-		backtracking = new Backtracking(labyrinth);
+		labyrinth = new Labyrinth(lab);
+		alg = new Backtracking();
+		Main main = new Main();
+		main.solveLab(alg, labyrinth);
+	}
+	
+	public void solveLab(AlgInterface algorithm, Labyrinth lab) {
 		
 	}
 
