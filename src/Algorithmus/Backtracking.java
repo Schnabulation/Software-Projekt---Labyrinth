@@ -2,12 +2,12 @@ package algorithmus;
 
 import labyrinth.Labyrinth;
 
-public class Backtracking extends Algorithmus {
+public class Backtracking extends Algorithmus{
 
 	@Override
-	public void findeWeg() {
+	public String nextStep(char aktuellePosition) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 

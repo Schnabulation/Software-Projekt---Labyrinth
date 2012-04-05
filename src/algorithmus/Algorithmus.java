@@ -2,5 +2,5 @@ package algorithmus;
 
 public abstract class Algorithmus {
 
-	public abstract void findeWeg();
+	public abstract String nextStep(char aktuellePosition);
 }
