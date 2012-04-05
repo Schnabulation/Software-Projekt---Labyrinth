@@ -10,11 +10,21 @@ public class Labyrinth {
 	
 	
 	public Labyrinth(char[][] lab, int[] start, int[] ende) {
-		labRaw = lab;
+		labRaw = this.invertLab(lab); // dreht das Labyrinth in der Dimension [x][y] --> [y][x]
 		setLaenge(labRaw.length);
 		setBreite(labRaw[1].length);
 		this.setStart(start);
 		this.setEnde(ende);
+	}
+
+	private char[][] invertLab(char[][] lab) {
+		char[][] newLab = new char[lab[1].length][lab.length];
+		for (int i = 0; i < lab.length; i++) {
+				for (int j = 0; j < lab[1].length; j++) {
+					newLab[i][j] = lab[j][i];
+				}
+			}
+		 return newLab;
 	}
 
 	public void setStart(int[] start) {
