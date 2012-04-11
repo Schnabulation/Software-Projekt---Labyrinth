@@ -26,6 +26,16 @@ public class Labyrinth {
 			}
 		 return newLab;
 	}
+	
+	public void zeichnen() {
+		 for (int i = 0; i < this.getLaenge(); i++) {
+				for (int j = 0; j < this.getBreite(); j++) {
+					System.out.print(this.getChar(j,i)+ " ");
+				}
+				System.out.println();	 
+			}
+		 System.out.println("-------------------------------------");
+	}
 
 	public void setStart(int[] start) {
 		this.start = start;
@@ -59,8 +69,12 @@ public class Labyrinth {
 		return breite;
 	}
 
-	public char getPosition(int x, int y) {
+	public char getChar(int x, int y) {
 		return this.labRaw[x][y];
+	}
+	
+	public void setChar(int x, int y, char newChar) {
+		labRaw[x][y] = newChar;
 	}
 	
 

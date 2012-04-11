@@ -11,11 +11,11 @@ public class Main {
 	
 	
 	public static void loadLab() {
-		int[] start = new int[2]; // Variable für den Startpunkt definieren und befüllen
+		int[] start = new int[2]; // Variable fï¿½r den Startpunkt definieren und befï¿½llen
 		start[0] = 0;
 		start[1] = 3;
 		
-		int[] ende = new int[2]; // Variable für den Endpunkt definieren und befüllen
+		int[] ende = new int[2]; // Variable fï¿½r den Endpunkt definieren und befï¿½llen
 		ende[0] = 11;
 		ende[1] = 2;
 		
@@ -45,7 +45,7 @@ public class Main {
 		Main.loadAlg(); // Algorithmus erstellen
 		
 		Handler handler = new Handler(alg, labyrinth); // Controller Objekt erstellen
-		handler.solveLab(); // Lösungsfindung starten
+		handler.start(); // Lï¿½sungsfindung starten
 	}
 
 }
