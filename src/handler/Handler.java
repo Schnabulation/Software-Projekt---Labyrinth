@@ -16,5 +16,6 @@ public class Handler {
 	public void start() {
 		Labyrinth solvedLab = alg.solveLab(labyrinth);
 		solvedLab.zeichnen();
+		alg.writeStatistics();
 	}
 }

@@ -4,17 +4,30 @@ import labyrinth.Labyrinth;
 
 public abstract class Algorithmus {
 	
-	private int solveTime;
 	private int stepCounter;
+	private long startTime;
+	private long endTime;
 
 	public abstract Labyrinth solveLab(Labyrinth originalLab);
 
-	public int getSolveTime() {
-		return solveTime;
+	public long getStartTime() {
+		return startTime;
 	}
 
-	public void setSolveTime(int solveTime) {
-		this.solveTime = solveTime;
+	public void setStartTime(long startTime) {
+		this.startTime = startTime;
+	}
+
+	public long getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(long endTime) {
+		this.endTime = endTime;
+	}
+
+	public long getSolveTime() {
+		return endTime-startTime;
 	}
 
 	public int getStepCounter() {
@@ -23,6 +36,14 @@ public abstract class Algorithmus {
 
 	public void setStepCounter(int stepCounter) {
 		this.stepCounter = stepCounter;
+	}
+	public void increaseStepCounter(){
+		this.stepCounter = this.stepCounter + 1;
+	}
+	public void writeStatistics(){
+		System.out.println("------ STATISTIK ------");
+		System.out.println("benötigte Anzal Schritte: " + getStepCounter());
+		System.out.println("benötigte Zeit: " + getSolveTime() + " Millisekunden");
 	}
 	
 }

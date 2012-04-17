@@ -4,25 +4,24 @@ import labyrinth.Labyrinth;
 
 public class Backtracking extends Algorithmus {
 
-	final static int[] STEPX	= {  0, 1, 0,-1 };	
-	final static int[] STEPY	= { -1, 0, 1, 0 };
-	static int schritt;
-	final static int OBEN = 0, RECHTS = 1, UNTEN = 2, LINKS = 3;
-	static int aktX;
-	static int aktY;
+	final int[] STEPX	= {  0, 1, 0,-1 };	
+	final int[] STEPY	= { -1, 0, 1, 0 };
+	final int OBEN = 0, RECHTS = 1, UNTEN = 2, LINKS = 3;
 	
 	@Override
 	public Labyrinth solveLab(Labyrinth originalLab) {
+		setStartTime(System.currentTimeMillis());
 		markieren(originalLab.getStart()[0], originalLab.getStart()[1],originalLab);
 		
+		//CODE!
 		rekursivLab(originalLab, originalLab.getStart()[0], originalLab.getStart()[1]);
 		
+		setEndTime(System.currentTimeMillis());
 		return originalLab;
 	}
 	
 	public boolean rekursivLab(Labyrinth originalLab, int x, int y){
 		int schritt = -1;
-		originalLab.zeichnen();
 		int n = originalLab.getBreite();
 		
 		while (schritt != LINKS){
@@ -39,7 +38,7 @@ public class Backtracking extends Algorithmus {
 			if(ok){
 				markieren(neuX,neuY,originalLab);
  
-				if (!ausgangGefunden(neuX, neuY, originalLab)) {
+				if (!istZiel(neuX, neuY, originalLab)) {
 					// rekursiver Aufruf von FindeLoesung
 					if (rekursivLab(originalLab, neuX, neuY)) {
 						// Lösung gefunden	
@@ -55,7 +54,7 @@ public class Backtracking extends Algorithmus {
 		return false;
 	}
 	
-	 private static boolean ausgangGefunden(int neuX, int neuY, Labyrinth originalLab) {
+	 private static boolean istZiel(int neuX, int neuY, Labyrinth originalLab) {
 		 
 		 if(neuX==originalLab.getEnde()[0] && neuY==originalLab.getEnde()[1]){
 			 return true;
@@ -64,11 +63,15 @@ public class Backtracking extends Algorithmus {
 	}
 	
 	public void markieren(int x, int y, Labyrinth originalLab){
+		increaseStepCounter();
 		originalLab.setChar(x, y, 'm');
+		originalLab.zeichnen();
 		// currentLabyrinth[y][x]='m';
 	}
 	public void demarkieren(int x, int y, Labyrinth originalLab){
+		increaseStepCounter();
 		originalLab.setChar(x, y, 'x');
+		originalLab.zeichnen();
 		// currentLabyrinth[y][x]='x';
 	}
 
