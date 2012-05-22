@@ -1,5 +1,6 @@
 package handler;
 
+import gui.Gui;
 import labyrinth.Labyrinth;
 import algorithmus.Algorithmus;
 import algorithmus.Backtracking;
@@ -45,9 +46,9 @@ public class Main {
 		Main.loadAlg(); // Algorithmus erstellen
 		
 		Handler handler = new Handler(alg, labyrinth); // Controller Objekt erstellen
-		handler.start(); // L�sungsfindung starten
+//		handler.start(); // L�sungsfindung starten
 		
-		new Gui(); // Methode um GUI aufzurufen
+		new Gui(labyrinth); // Methode um GUI aufzurufen
 	}
 
 }

@@ -1,4 +1,4 @@
-package handler;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,11 +10,14 @@ import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+
+import labyrinth.Labyrinth;
 
 
 
@@ -37,8 +40,17 @@ public class Gui {
 	private JSeparator vertSeperator;
 	private GridBagConstraints con_x0_y2;
 	private JSeparator horiSeperator;
+	private Labyrinth labyrinth;
 	
 	public Gui() {
+		createFrame();
+		createMenu();
+		createContent();
+		sizePositionVisibility();
+	}
+	
+	public Gui(Labyrinth labyrinth) {
+		this.labyrinth = labyrinth;
 		createFrame();
 		createMenu();
 		createContent();
@@ -57,7 +69,6 @@ public class Gui {
 		window.setLocation(dim.width / 2 - 400, dim.height / 2 - 400);
 		window.setVisible(true);
 		window.setResizable(false);
-		System.out.println(contentPane.getSize());
 	}
 	
 	public void createContent() {
@@ -105,7 +116,8 @@ public class Gui {
 		rightColumnPanel.setPreferredSize(new Dimension(390, 730));
 //		rightColumnPanel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, Color.gray));
 		
-
+		topLeftPanel.add(new JLabel("Test"));
+		topLeftPanel.add(new Labyrinthdarstellung(labyrinth, 20));
 		
 		mainPanel.add(topLeftPanel,con_x0_y0);
 		mainPanel.add(bottomLeftPanel, con_x0_y2);
