@@ -19,9 +19,6 @@ import javax.swing.SwingConstants;
 
 import labyrinth.Labyrinth;
 
-
-
-
 public class Gui {
 	private JFrame window;
 	private JMenuBar menu;
@@ -43,14 +40,6 @@ public class Gui {
 	private Labyrinth labyrinth;
 	
 	public Gui() {
-		createFrame();
-		createMenu();
-		createContent();
-		sizePositionVisibility();
-	}
-	
-	public Gui(Labyrinth labyrinth) {
-		this.labyrinth = labyrinth;
 		createFrame();
 		createMenu();
 		createContent();
@@ -116,9 +105,6 @@ public class Gui {
 		rightColumnPanel.setPreferredSize(new Dimension(390, 730));
 //		rightColumnPanel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, Color.gray));
 		
-		topLeftPanel.add(new JLabel("Test"));
-		topLeftPanel.add(new Labyrinthdarstellung(labyrinth, 20));
-		
 		mainPanel.add(topLeftPanel,con_x0_y0);
 		mainPanel.add(bottomLeftPanel, con_x0_y2);
 		mainPanel.add(rightColumnPanel, con_x2_y0);
@@ -147,6 +133,16 @@ public class Gui {
 
 		window.setJMenuBar(menu);
 
+	}
+	
+	public void labyrinth1Zeichnen(Labyrinth labyrinth) {
+		topLeftPanel.add(new Labyrinthdarstellung(labyrinth, 20));
+		window.validate();
+	}
+	
+	public void labyrinth2Zeichnen(Labyrinth labyrinth) {
+		bottomLeftPanel.add(new Labyrinthdarstellung(labyrinth, 20));
+		window.validate();
 	}
 
 }

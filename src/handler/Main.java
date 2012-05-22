@@ -46,9 +46,8 @@ public class Main {
 		Main.loadAlg(); // Algorithmus erstellen
 		
 		Handler handler = new Handler(alg, labyrinth); // Controller Objekt erstellen
-//		handler.start(); // L�sungsfindung starten
+		handler.start(); // L�sungsfindung starten
 		
-		new Gui(labyrinth); // Methode um GUI aufzurufen
 	}
 
 }

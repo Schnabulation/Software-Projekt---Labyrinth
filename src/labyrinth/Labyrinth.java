@@ -1,6 +1,6 @@
 package labyrinth;
 
-public class Labyrinth {
+public class Labyrinth implements Cloneable {
 
 	private char[][] labRaw;
 	private int laenge;
@@ -77,6 +77,15 @@ public class Labyrinth {
 		labRaw[x][y] = newChar;
 	}
 	
-
+	public Labyrinth clone() {
+		char[][] newLab = new char[labRaw[1].length][labRaw.length];
+		for (int i = 0; i < labRaw.length; i++) {
+				for (int j = 0; j < labRaw[1].length; j++) {
+					newLab[i][j] = labRaw[j][i];
+				}
+			}
+		Labyrinth tempLab = new Labyrinth(newLab, this.getStart(), this.getEnde());
+		return tempLab;
+	}
 	
 }

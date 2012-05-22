@@ -73,11 +73,14 @@ public class Labyrinthdarstellung extends JPanel {
 				for (int j = 0; j < labyrinth.getBreite(); j++) {
 					if (labyrinth.getChar(j, i) == '0') {
 					    graphics.setColor(Color.BLACK);
-					    graphics.fillRect(rastermass * j, rastermass * i, this.rastermass, this.rastermass);
-					} else {
+					} else if (labyrinth.getChar(j, i) == '1') {
 					    graphics.setColor(Color.WHITE);
-					    graphics.fillRect(rastermass * j, rastermass * i, this.rastermass, this.rastermass);
+					} else if (labyrinth.getChar(j, i) == 'm') {
+						graphics.setColor(Color.GREEN);
+					} else {
+						graphics.setColor(Color.RED);
 					}
+					graphics.fillRect(rastermass * j, rastermass * i, this.rastermass, this.rastermass);
 				}
 			}
     
