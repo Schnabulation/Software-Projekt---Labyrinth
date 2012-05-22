@@ -14,13 +14,13 @@ public class Handler {
 		this.alg = alg;
 		this.labyrinth = labyrinth;
 		gui = new Gui();
-		gui.labyrinth1Zeichnen(labyrinth);
+		gui.labyrinth2Zeichnen(labyrinth);
 	}
 
 	public void start() {
 //		Labyrinth tempLab = labyrinth.
 		Labyrinth solvedLab = alg.solveLab(labyrinth.clone());
-		gui.labyrinth2Zeichnen(solvedLab);
+		gui.labyrinth1Zeichnen(solvedLab);
 		alg.writeStatistics();
 	}
 }
