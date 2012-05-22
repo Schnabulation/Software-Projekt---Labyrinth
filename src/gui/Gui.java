@@ -136,12 +136,12 @@ public class Gui {
 	}
 	
 	public void labyrinth1Zeichnen(Labyrinth labyrinth) {
-		topLeftPanel.add(new Labyrinthdarstellung(labyrinth, 20));
+		topLeftPanel.add(new JLabyrinth(labyrinth, 20));
 		window.validate();
 	}
 	
 	public void labyrinth2Zeichnen(Labyrinth labyrinth) {
-		bottomLeftPanel.add(new Labyrinthdarstellung(labyrinth, 20));
+		bottomLeftPanel.add(new JLabyrinth(labyrinth, 20));
 		window.validate();
 	}
 
