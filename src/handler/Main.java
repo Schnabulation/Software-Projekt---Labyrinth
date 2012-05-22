@@ -1,7 +1,7 @@
 package handler;
 
-import gui.Gui;
 import labyrinth.Labyrinth;
+import algorithmus.A_star;
 import algorithmus.Algorithmus;
 import algorithmus.Backtracking;
 
@@ -9,6 +9,7 @@ public class Main {
 
 	private static Labyrinth labyrinth;
 	private static Algorithmus alg;
+	private static Algorithmus alg2;
 	
 	
 	public static void loadLab() {
@@ -53,13 +54,14 @@ public class Main {
 	
 	public static void loadAlg() {
 		alg = new Backtracking(); // neues Algorithmus-Objekt generieren
+		alg2 = new A_star(); // neues Algorithmus-Objekt generieren
 	}
 		
 	public static void main(String[] args) {
 		Main.loadLab(); // Labyrinth erstellen
 		Main.loadAlg(); // Algorithmus erstellen
 		
-		Handler handler = new Handler(alg, labyrinth); // Controller Objekt erstellen
+		Handler handler = new Handler(alg2, labyrinth); // Controller Objekt erstellen
 		handler.start(); // L�sungsfindung starten
 		
 	}
