@@ -94,16 +94,17 @@ public class Gui {
 		topLeftPanel = new JPanel();
 //		topLeftPanel.setBackground(Color.green);
 		topLeftPanel.setPreferredSize(new Dimension(390, 365));
-//		topLeftPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.gray));
+		topLeftPanel.setLayout(new GridBagLayout());
 		
 		bottomLeftPanel = new JPanel();
 //		bottomLeftPanel.setBackground(Color.red);
 		bottomLeftPanel.setPreferredSize(new Dimension(390, 365));
+		bottomLeftPanel.setLayout(new GridBagLayout());
 		
 		rightColumnPanel = new JPanel();
 //		rightColumnPanel.setBackground(Color.black);
 		rightColumnPanel.setPreferredSize(new Dimension(390, 730));
-//		rightColumnPanel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, Color.gray));
+		rightColumnPanel.setLayout(new GridBagLayout());
 		
 		mainPanel.add(topLeftPanel,con_x0_y0);
 		mainPanel.add(bottomLeftPanel, con_x0_y2);
