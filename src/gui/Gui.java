@@ -53,9 +53,9 @@ public class Gui {
 	}
 	
 	public void sizePositionVisibility() {
-		window.setSize(800, 800);
+		window.setSize(600, 600);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		window.setLocation(dim.width / 2 - 400, dim.height / 2 - 400);
+		window.setLocation(dim.width / 2 - 300, dim.height / 2 - 300);
 		window.setVisible(true);
 		window.setResizable(false);
 	}
@@ -93,17 +93,17 @@ public class Gui {
 		
 		topLeftPanel = new JPanel();
 //		topLeftPanel.setBackground(Color.green);
-		topLeftPanel.setPreferredSize(new Dimension(390, 365));
+		topLeftPanel.setPreferredSize(new Dimension(290, 265));
 		topLeftPanel.setLayout(new GridBagLayout());
 		
 		bottomLeftPanel = new JPanel();
 //		bottomLeftPanel.setBackground(Color.red);
-		bottomLeftPanel.setPreferredSize(new Dimension(390, 365));
+		bottomLeftPanel.setPreferredSize(new Dimension(290, 265));
 		bottomLeftPanel.setLayout(new GridBagLayout());
 		
 		rightColumnPanel = new JPanel();
 //		rightColumnPanel.setBackground(Color.black);
-		rightColumnPanel.setPreferredSize(new Dimension(390, 730));
+		rightColumnPanel.setPreferredSize(new Dimension(290, 530));
 		rightColumnPanel.setLayout(new GridBagLayout());
 		
 		mainPanel.add(topLeftPanel,con_x0_y0);
@@ -111,10 +111,10 @@ public class Gui {
 		mainPanel.add(rightColumnPanel, con_x2_y0);
 		
 		vertSeperator = new JSeparator(SwingConstants.VERTICAL);
-		vertSeperator.setPreferredSize(new Dimension(1, 700));
+		vertSeperator.setPreferredSize(new Dimension(1, 530));
 		
 		horiSeperator = new JSeparator(SwingConstants.HORIZONTAL);
-		horiSeperator.setPreferredSize(new Dimension(350, 1));
+		horiSeperator.setPreferredSize(new Dimension(250, 1));
 		
 		
 		mainPanel.add(vertSeperator,con_x1_y0);
