@@ -18,9 +18,8 @@ public class Handler {
 	}
 
 	public void start() {
-//		Labyrinth tempLab = labyrinth.
 		Labyrinth solvedLab = alg.solveLab(labyrinth.clone());
 		gui.labyrinth1Zeichnen(solvedLab);
-		alg.writeStatistics();
+//		alg.writeStatistics();
 	}
 }
