@@ -1,16 +1,12 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
-
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -37,12 +33,12 @@ public class Gui {
 	private JSeparator vertSeperator;
 	private GridBagConstraints con_x0_y2;
 	private JSeparator horiSeperator;
-	private Labyrinth labyrinth;
 	
 	public Gui() {
 		createFrame();
 		createMenu();
-		createContent();
+		createMainContent();
+		createRightColumn();
 		sizePositionVisibility();
 	}
 	
@@ -60,7 +56,7 @@ public class Gui {
 		window.setResizable(false);
 	}
 	
-	public void createContent() {
+	public void createMainContent() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
 		
@@ -68,6 +64,11 @@ public class Gui {
 		con_x0_y0.gridy = 0;
 		con_x0_y0.gridx = 0;
 		con_x0_y0.anchor = GridBagConstraints.LINE_START;
+		
+		con_x1_y1 = new GridBagConstraints();
+		con_x1_y1.gridy = 1;
+		con_x1_y1.gridx = 1;
+		con_x1_y1.anchor = GridBagConstraints.LINE_START;
 		
 		con_x1_y0 = new GridBagConstraints();
 		con_x1_y0.gridy = 0;
@@ -123,6 +124,10 @@ public class Gui {
 		contentPane.add(BorderLayout.CENTER, mainPanel);
 
 
+	}
+	
+	public void createRightColumn() {
+		
 	}
 	
 	public void createMenu() {

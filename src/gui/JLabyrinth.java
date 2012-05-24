@@ -10,6 +10,7 @@ import labyrinth.Labyrinth;
 
 public class JLabyrinth extends JPanel {
 
+	private static final long serialVersionUID = -2186655955384671355L;
 	private static final int INNENABSTAND = 0;
 	private int rastermass;
 	private Labyrinth labyrinth;
