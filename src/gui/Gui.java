@@ -120,7 +120,7 @@ public class Gui {
 		rightColumnPanel = new JPanel();
 //		rightColumnPanel.setBackground(Color.black);
 		rightColumnPanel.setPreferredSize(new Dimension(290, 530));
-		rightColumnPanel.setLayout(new GridBagLayout());
+		rightColumnPanel.setLayout(new BorderLayout());
 		
 		mainPanel.add(topLeftPanel,con_x0_y0);
 		mainPanel.add(bottomLeftPanel, con_x0_y2);
@@ -145,29 +145,29 @@ public class Gui {
 		GridBagConstraints con_x0_y0_special = new GridBagConstraints();
 		con_x0_y0_special.gridy = 0;
 		con_x0_y0_special.gridx = 0;
-		con_x0_y0_special.weighty = 0;
-		con_x0_y0_special.insets = new Insets(0,0,0,0);
+//		con_x0_y0_special.weighty = 0;
+		con_x0_y0_special.insets = new Insets(10,0,0,0);
 		con_x0_y0_special.anchor = GridBagConstraints.PAGE_START;
 		
 		GridBagConstraints con_x0_y1_special = new GridBagConstraints();
 		con_x0_y1_special.gridy = 1;
 		con_x0_y1_special.gridx = 0;
-		con_x0_y1_special.weighty = 0;
-		con_x0_y1_special.insets = new Insets(10,0,10,0);
+//		con_x0_y1_special.weighty = 0;
+		con_x0_y1_special.insets = new Insets(30,0,0,0);
 		con_x0_y1_special.anchor = GridBagConstraints.PAGE_START;
 		
 		GridBagConstraints con_x0_y2_special = new GridBagConstraints();
 		con_x0_y2_special.gridy = 2;
 		con_x0_y2_special.gridx = 0;
-		con_x0_y2_special.weighty = 0;
-		con_x0_y2_special.insets = new Insets(10,0,10,0);
+//		con_x0_y2_special.weighty = 0;
+		con_x0_y2_special.insets = new Insets(30,0,0,0);
 		con_x0_y2_special.anchor = GridBagConstraints.PAGE_START;
 		
 		GridBagConstraints con_x0_y3_special = new GridBagConstraints();
 		con_x0_y3_special.gridy = 3;
 		con_x0_y3_special.gridx = 0;
-		con_x0_y3_special.weighty = 0.1;
-		con_x0_y3_special.insets = new Insets(10,0,10,0);
+//		con_x0_y3_special.weighty = 0.1;
+		con_x0_y3_special.insets = new Insets(250,0,0,0);
 		con_x0_y3_special.anchor = GridBagConstraints.PAGE_START;
 		
 		
@@ -182,25 +182,46 @@ public class Gui {
 		rightSecondPanel.setLayout(new BorderLayout());
 		
 		rightThirdPanel = new JPanel();
-		rightThirdPanel.setBackground(Color.blue);
-		rightThirdPanel.setPreferredSize(new Dimension(250, 100));
+//		rightThirdPanel.setBackground(Color.blue);
+		rightThirdPanel.setPreferredSize(new Dimension(250, 70));
+		rightThirdPanel.setLayout(new BorderLayout());
 		
 		rightForthPanel = new JPanel();
-		rightForthPanel.setBackground(Color.green);
-		rightForthPanel.setPreferredSize(new Dimension(250, 100));
+//		rightForthPanel.setBackground(Color.green);
+		rightForthPanel.setPreferredSize(new Dimension(250, 30));
+		rightForthPanel.setLayout(new BorderLayout());
 		
 		JButton neuerVergleich = new JButton("Neuer Vergleich");
-		neuerVergleich.setPreferredSize(new Dimension(250, 30));
-		rightFirstPanel.add(neuerVergleich,BorderLayout.NORTH);
+		rightFirstPanel.add(neuerVergleich,BorderLayout.CENTER);
 		
 		JLabel abgelaufeneZeit = new JLabel("<html>Abgelaufene Zeit:<br>" +
 				"Alg. 1: 01:12<br>Alg. 2: 04:21<br>Differenz: 03:09</html>");
 		rightSecondPanel.add(abgelaufeneZeit,BorderLayout.NORTH);
 		
-		rightColumnPanel.add(rightFirstPanel,con_x0_y0_special);
-		rightColumnPanel.add(rightSecondPanel,con_x0_y1_special);
-		rightColumnPanel.add(rightThirdPanel,con_x0_y2_special);
-		rightColumnPanel.add(rightForthPanel,con_x0_y3_special);
+		JLabel anzahlSchritte = new JLabel("<html>Anzahl Schritte:<br>" +
+		"Alg. 1: 43<br>Alg. 2: 102<br>Differenz: 99</html>");
+		rightThirdPanel.add(anzahlSchritte,BorderLayout.NORTH);
+		
+		JButton loeschen = new JButton("Löschen");
+		loeschen.setPreferredSize(new Dimension(83, 30));
+		JButton nextStep = new JButton("Nä. Schritt");
+		nextStep.setPreferredSize(new Dimension(83, 30));
+		JButton start = new JButton("Start");
+		start.setPreferredSize(new Dimension(83, 30));
+		
+		rightForthPanel.add(loeschen,BorderLayout.WEST);
+		rightForthPanel.add(nextStep,BorderLayout.CENTER);
+		rightForthPanel.add(start,BorderLayout.EAST);
+		
+		JPanel topAlignPanel = new JPanel();
+		topAlignPanel.setLayout(new GridBagLayout());
+		
+		topAlignPanel.add(rightFirstPanel,con_x0_y0_special);
+		topAlignPanel.add(rightSecondPanel,con_x0_y1_special);
+		topAlignPanel.add(rightThirdPanel,con_x0_y2_special);
+		topAlignPanel.add(rightForthPanel,con_x0_y3_special);
+		
+		rightColumnPanel.add(topAlignPanel,BorderLayout.NORTH);
 		
 	}
 	

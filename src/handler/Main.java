@@ -8,7 +8,7 @@ import algorithmus.Backtracking;
 public class Main {
 
 	private static Labyrinth labyrinth;
-	private static Algorithmus alg;
+	private static Algorithmus alg1;
 	private static Algorithmus alg2;
 	
 	
@@ -53,7 +53,7 @@ public class Main {
 	}
 	
 	public static void loadAlg() {
-		alg = new Backtracking(); // neues Algorithmus-Objekt generieren
+		alg1 = new Backtracking(); // neues Algorithmus-Objekt generieren
 		alg2 = new A_star(); // neues Algorithmus-Objekt generieren
 	}
 		
@@ -61,7 +61,7 @@ public class Main {
 		Main.loadLab(); // Labyrinth erstellen
 		Main.loadAlg(); // Algorithmus erstellen
 		
-		Handler handler = new Handler(alg2, labyrinth); // Controller Objekt erstellen
+		Handler handler = new Handler(alg1, alg2, labyrinth); // Controller Objekt erstellen
 		handler.start(); // L�sungsfindung starten
 		
 	}
