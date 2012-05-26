@@ -7,19 +7,21 @@ import algorithmus.Algorithmus;
 public class Handler {
 	
 	private Labyrinth labyrinth;
-	private Algorithmus alg;
+	private Algorithmus alg1;
+	private Algorithmus alg2;
 	private Gui gui;
 	
-	public Handler(Algorithmus alg, Labyrinth labyrinth) {
-		this.alg = alg;
+	public Handler(Algorithmus alg1, Algorithmus alg2, Labyrinth labyrinth) {
+		this.alg1 = alg1;
+		this.alg2 = alg2;
 		this.labyrinth = labyrinth;
 		gui = new Gui();
-		gui.labyrinth2Zeichnen(labyrinth);
 	}
 
 	public void start() {
-		Labyrinth solvedLab = alg.solveLab(labyrinth.clone());
-		gui.labyrinth1Zeichnen(solvedLab);
+
+		gui.labyrinth1Zeichnen(alg1.solveLab(labyrinth.clone()));
+		gui.labyrinth2Zeichnen(alg2.solveLab(labyrinth.clone()));
 		alg.writeStatistics();
 	}
 }
