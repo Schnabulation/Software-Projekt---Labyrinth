@@ -19,13 +19,13 @@ public class A_star extends Algorithmus {
 	public void markieren(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
 		originalLab.setChar(x, y, 'm');
-//		originalLab.zeichnen();
+		originalLab.zeichnen();
 		// currentLabyrinth[y][x]='m';
 	}
 	public void demarkieren(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
 		originalLab.setChar(x, y, 'x');
-//		originalLab.zeichnen();
+		originalLab.zeichnen();
 		// currentLabyrinth[y][x]='x';
 	}
 
