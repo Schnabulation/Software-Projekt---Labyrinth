@@ -22,6 +22,7 @@ public class Handler {
 
 		gui.labyrinth1Zeichnen(alg1.solveLab(labyrinth.clone()));
 		gui.labyrinth2Zeichnen(alg2.solveLab(labyrinth.clone()));
-		alg.writeStatistics();
+		alg1.writeStatistics();
+		alg2.writeStatistics();
 	}
 }

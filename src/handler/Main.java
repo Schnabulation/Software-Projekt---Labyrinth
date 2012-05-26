@@ -1,7 +1,7 @@
 package handler;
 
 import labyrinth.Labyrinth;
-import algorithmus.A_star;
+import algorithmus.AStar;
 import algorithmus.Algorithmus;
 import algorithmus.Backtracking;
 
@@ -54,7 +54,7 @@ public class Main {
 	
 	public static void loadAlg() {
 		alg1 = new Backtracking(); // neues Algorithmus-Objekt generieren
-		alg2 = new A_star(); // neues Algorithmus-Objekt generieren
+		alg2 = new AStar(); // neues Algorithmus-Objekt generieren
 	}
 		
 	public static void main(String[] args) {
