@@ -1,5 +1,6 @@
 package handler;
 
+import gui.Gui;
 import labyrinth.Labyrinth;
 import labyrinth.LabyrinthGenerator;
 import algorithmus.AStar;
@@ -19,11 +20,13 @@ public class Main {
 	}
 		
 	public static void main(String[] args) {
-		labyrinth = LabyrinthGenerator.loadLab(1); // Labyrinth erstellen
-		Main.loadAlg(); // Algorithmus erstellen
+//		labyrinth = LabyrinthGenerator.loadLab(1); // Labyrinth erstellen
+//		Main.loadAlg(); // Algorithmus erstellen
+//		
+//		Handler handler = new Handler(alg1, alg2, labyrinth); // Controller Objekt erstellen
+//		handler.start(); // L�sungsfindung starten
 		
-		Handler handler = new Handler(alg1, alg2, labyrinth); // Controller Objekt erstellen
-		handler.start(); // L�sungsfindung starten
+		new Gui();
 		
 	}
 

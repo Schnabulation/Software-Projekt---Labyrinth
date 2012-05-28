@@ -13,28 +13,29 @@ public class Handler {
 	private Algorithmus alg2;
 	private Gui gui;
 	
-	public Handler(Algorithmus alg1, Algorithmus alg2, Labyrinth labyrinth) {
+	public Handler(Algorithmus alg1, Algorithmus alg2, Labyrinth labyrinth, Gui gui) {
 		this.alg1 = alg1;
 		this.alg2 = alg2;
 		this.labyrinth = labyrinth;
-		gui = new Gui();
+		this.gui = gui;
+		this.start();
 	}
 
 	public void start() {
 
-		alg1.startStepByStep(labyrinth.clone());
-		alg2.startStepByStep(labyrinth.clone());
-		Scanner scanner = new Scanner(System.in);
-		while(!alg1.isEnde() || !alg2.isEnde()){
-			scanner.nextLine();
-			gui.labyrinth1Zeichnen(alg1.nextStep());
-			gui.labyrinth2Zeichnen(alg2.nextStep());
-		}
+//		alg1.startStepByStep(labyrinth.clone());
+//		alg2.startStepByStep(labyrinth.clone());
+//		Scanner scanner = new Scanner(System.in);
+//		while(!alg1.isEnde() || !alg2.isEnde()){
+//			scanner.nextLine();
+//			gui.labyrinth1Zeichnen(alg1.nextStep());
+//			gui.labyrinth2Zeichnen(alg2.nextStep());
+//		}
 
 //		gui.labyrinth1Zeichnen(alg1.nextStep());
-		//gui.labyrinth1Zeichnen(alg1.solveLab(labyrinth.clone()));
-		//gui.labyrinth2Zeichnen(alg2.solveLab(labyrinth.clone()));
-		alg1.writeStatistics();
-		alg2.writeStatistics();
+		gui.labyrinth1Zeichnen(alg1.solveLab(labyrinth.clone()));
+		gui.labyrinth2Zeichnen(alg2.solveLab(labyrinth.clone()));
+//		alg1.writeStatistics();
+//		alg2.writeStatistics();
 	}
 }

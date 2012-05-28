@@ -1,5 +1,7 @@
 package gui;
 
+import handler.Handler;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -222,7 +224,7 @@ public class Gui {
 		nextStep.setPreferredSize(new Dimension(83, 30));
 		JButton start = new JButton("Start");
 		start.setPreferredSize(new Dimension(83, 30));
-		start.addActionListener(new startButtonAction());
+		start.addActionListener(new startButtonAction(this));
 		
 		rightForthPanel.add(loeschen,BorderLayout.WEST);
 		rightForthPanel.add(nextStep,BorderLayout.CENTER);
@@ -278,9 +280,16 @@ public class Gui {
 	}
 	
 	public class startButtonAction implements ActionListener {
+		
+		Gui gui;
+		
+		public startButtonAction(Gui gui) {
+			this.gui = gui;
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			new Handler(usedAlg.get(0), usedAlg.get(1), usedLab.get(0), gui);
 
 		}
 	}
