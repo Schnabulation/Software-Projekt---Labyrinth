@@ -131,26 +131,36 @@ public class AStar extends Algorithmus {
 	public void markieren(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
 		originalLab.setChar(x, y, 'm');
-		originalLab.zeichnen();
+		//originalLab.zeichnen();
 		// currentLabyrinth[y][x]='m';
 	}
-	public void demarkieren(int x, int y, Labyrinth originalLab){
-		increaseStepCounter();
-		originalLab.setChar(x, y, 'x');
-		originalLab.zeichnen();
-		// currentLabyrinth[y][x]='x';
-	}
+//	public void demarkieren(int x, int y, Labyrinth originalLab){
+//		increaseStepCounter();
+//		originalLab.setChar(x, y, 'x');
+//		originalLab.zeichnen();
+//		// currentLabyrinth[y][x]='x';
+//	}
 	public void markierenOffen(int x, int y, Labyrinth originalLab){
-		increaseStepCounter();
 		originalLab.setChar(x, y, 'o');
-		originalLab.zeichnen();
+		//originalLab.zeichnen();
 		// currentLabyrinth[y][x]='x';
 	}
 	public void markierenGeschlossen(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
 		originalLab.setChar(x, y, 'g');
-		originalLab.zeichnen();
+		//originalLab.zeichnen();
 		// currentLabyrinth[y][x]='x';
 	}
+	
+//	public void stepByStep(){
+//		if (step1.equals("S")) {
+//			scanner.nextLine();
+//		} else if (step1.equals("A")) {
+//			//nichts
+//		} else {
+//			System.out.println("falsche eingabe");
+//			System.exit(0);
+//		}
+//	}
 
 }
