@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -10,14 +9,18 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import algorithmus.AStar;
+import algorithmus.Algorithmus;
+import algorithmus.Backtracking;
 
 import labyrinth.Labyrinth;
 import labyrinth.LabyrinthGenerator;
@@ -43,18 +46,35 @@ public class Settings {
 	private JComboBox labyrinthBox;
 	private Labyrinth lab1;
 	private Labyrinth lab2;
+	private Algorithmus alg1;
+	private Algorithmus alg2;
+	private Algorithmus alg3;
+	private ArrayList<Labyrinth> usedLab;
+	private ArrayList<Algorithmus> usedAlg;
+	private Gui gui;
 	
-
-	public Settings() {
-		lab1 = LabyrinthGenerator.loadLab(1);
-		lab2 = LabyrinthGenerator.loadLab(2);
+	public Settings(ArrayList<Labyrinth> usedLab, ArrayList<Algorithmus> usedAlg, Gui gui) {
+		this.usedLab = usedLab;
+		this.usedAlg = usedAlg;
+		this.gui = gui;
 		
+		variabelnInitialisieren();		
 		createFrame();
 		createMainContent();
 		createRightColumn();
 		labyrinthZeichnen(LabyrinthGenerator.loadLab(1));
 		sizePositionVisibility();
 		fillDropdowns();
+	}
+
+	public void variabelnInitialisieren() {
+		lab1 = LabyrinthGenerator.loadLab(1);
+		lab2 = LabyrinthGenerator.loadLab(2);
+		
+		alg1 = new Backtracking(); // neues Algorithmus-Objekt generieren
+		alg2 = new AStar("Manhattan",true);
+		alg3 = new AStar("Manhattan",false);
+		
 	}
 
 	public void createFrame() {
@@ -85,12 +105,10 @@ public class Settings {
 		con_x2_y0.anchor = GridBagConstraints.LINE_START;
 
 		leftPanel = new JPanel();
-//		leftPanel.setBackground(Color.green);
 		leftPanel.setPreferredSize(new Dimension(190, 260));
 		leftPanel.setLayout(new GridBagLayout());
 
 		rightPanel = new JPanel();
-//		rightPanel.setBackground(Color.black);
 		rightPanel.setPreferredSize(new Dimension(190, 260));
 		rightPanel.setLayout(new BorderLayout());
 
@@ -162,6 +180,7 @@ public class Settings {
 		rightThirdPanel.add(alg2Box,BorderLayout.CENTER);
 		
 		JButton okButton = new JButton("Los");
+		okButton.addActionListener(new losButtonAction());
 		rightForthPanel.add(okButton,BorderLayout.NORTH);
 		
 		JPanel topAlignPanel = new JPanel();
@@ -179,6 +198,14 @@ public class Settings {
 		labyrinthModel.addElement(lab1);
 		labyrinthModel.addElement(lab2);
 		labyrinthBox.addActionListener(new labyrinthBoxAction());
+		
+		alg1Model.addElement(alg1);
+		alg1Model.addElement(alg2);
+		alg1Model.addElement(alg3);
+		
+		alg2Model.addElement(alg1);
+		alg2Model.addElement(alg2);
+		alg2Model.addElement(alg3);
 	}
 
 	
@@ -197,7 +224,22 @@ public class Settings {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			labyrinthZeichnen((Labyrinth) labyrinthModel.getSelectedItem());
+		}
+		
+	}
+	
+	private class losButtonAction implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			usedLab.removeAll(usedLab);
+			usedLab.add((Labyrinth) labyrinthModel.getSelectedItem());
 			
+			usedAlg.removeAll(usedAlg);
+			usedAlg.add((Algorithmus) alg1Model.getSelectedItem());
+			usedAlg.add((Algorithmus) alg2Model.getSelectedItem());
+			window.setVisible(false);
+			gui.update();
 		}
 		
 	}

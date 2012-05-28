@@ -45,5 +45,10 @@ public abstract class Algorithmus implements StepByStep{
 		System.out.println("benötigte Anzal Schritte: " + getStepCounter());
 		System.out.println("benötigte Zeit: " + getSolveTime() + " Millisekunden");
 	}
+	public String toString() {
+		String classname = this.getClass().getName();
+		int mid = classname.lastIndexOf ('.') + 1;
+		return classname.substring(mid);
+	}
 	
 }

@@ -10,6 +10,7 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +20,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+
+import algorithmus.Algorithmus;
 
 import labyrinth.Labyrinth;
 
@@ -46,14 +49,20 @@ public class Gui {
 	private JPanel rightThirdPanel;
 	private JPanel rightForthPanel;
 	private Settings settings;
+	private ArrayList<Labyrinth> usedLab;
+	private ArrayList<Algorithmus> usedAlg;
 	
 	public Gui() {
+		usedLab = new ArrayList<Labyrinth>();
+		usedAlg = new ArrayList<Algorithmus>();
+		
 		createFrame();
 		createMenu();
 		createMainContent();
 		createRightColumn();
 		sizePositionVisibility();
-		settings = new Settings();
+		settings = new Settings(usedLab, usedAlg, this);
+		settings.changeVisibility(true);
 	}
 	
 	public void createFrame() {
@@ -213,6 +222,7 @@ public class Gui {
 		nextStep.setPreferredSize(new Dimension(83, 30));
 		JButton start = new JButton("Start");
 		start.setPreferredSize(new Dimension(83, 30));
+		start.addActionListener(new startButtonAction());
 		
 		rightForthPanel.add(loeschen,BorderLayout.WEST);
 		rightForthPanel.add(nextStep,BorderLayout.CENTER);
@@ -253,6 +263,11 @@ public class Gui {
 		window.validate();
 	}
 	
+	public void update() {
+		labyrinth1Zeichnen(usedLab.get(0));
+		labyrinth2Zeichnen(usedLab.get(0));
+	}
+	
 	private class neuerVergleichAction implements ActionListener {
 
 		@Override
@@ -260,6 +275,14 @@ public class Gui {
 			settings.changeVisibility(true);
 		}
 		
+	}
+	
+	public class startButtonAction implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
 	}
 
 }
