@@ -8,6 +8,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -43,6 +45,7 @@ public class Gui {
 	private JPanel rightSecondPanel;
 	private JPanel rightThirdPanel;
 	private JPanel rightForthPanel;
+	private Settings settings;
 	
 	public Gui() {
 		createFrame();
@@ -50,6 +53,7 @@ public class Gui {
 		createMainContent();
 		createRightColumn();
 		sizePositionVisibility();
+		settings = new Settings();
 	}
 	
 	public void createFrame() {
@@ -192,6 +196,7 @@ public class Gui {
 		rightForthPanel.setLayout(new BorderLayout());
 		
 		JButton neuerVergleich = new JButton("Neuer Vergleich");
+		neuerVergleich.addActionListener(new neuerVergleichAction());
 		rightFirstPanel.add(neuerVergleich,BorderLayout.CENTER);
 		
 		JLabel abgelaufeneZeit = new JLabel("<html>Abgelaufene Zeit:<br>" +
@@ -244,6 +249,15 @@ public class Gui {
 	public void labyrinth2Zeichnen(Labyrinth labyrinth) {
 		bottomLeftPanel.add(new JLabyrinth(labyrinth, 20));
 		window.validate();
+	}
+	
+	private class neuerVergleichAction implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			settings.changeVisibility(true);
+		}
+		
 	}
 
 }
