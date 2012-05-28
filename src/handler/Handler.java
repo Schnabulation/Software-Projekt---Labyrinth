@@ -22,17 +22,19 @@ public class Handler {
 
 	public void start() {
 
-		alg1.startStepByStep(labyrinth);
+		alg1.startStepByStep(labyrinth.clone());
+		alg2.startStepByStep(labyrinth.clone());
 		Scanner scanner = new Scanner(System.in);
-		for (int i = 0; i < 20; i++) {
+		while(!alg1.isEnde() || !alg2.isEnde()){
 			scanner.nextLine();
 			gui.labyrinth1Zeichnen(alg1.nextStep());
+			gui.labyrinth2Zeichnen(alg2.nextStep());
 		}
 
 //		gui.labyrinth1Zeichnen(alg1.nextStep());
 		//gui.labyrinth1Zeichnen(alg1.solveLab(labyrinth.clone()));
 		//gui.labyrinth2Zeichnen(alg2.solveLab(labyrinth.clone()));
-		//alg1.writeStatistics();
-		//alg2.writeStatistics();
+		alg1.writeStatistics();
+		alg2.writeStatistics();
 	}
 }
