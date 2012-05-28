@@ -183,6 +183,17 @@ public class AStar extends Algorithmus {
 			}
 		}
 	}
+	
+	public String toString() {
+		String classname = this.getClass().getName();
+		int mid = classname.lastIndexOf ('.') + 1;
+		String entfernung = "";
+		if(entfernungStart){
+			entfernung = "mit Weg";
+		}
+		return (classname.substring(mid)+" " + abstandTyp + " " + entfernung);
+	}
+	
 	@Override
 	public void startStepByStep(Labyrinth lab) {
 		// TODO Auto-generated method stub
@@ -211,7 +222,7 @@ public class AStar extends Algorithmus {
 			}
 			if (t1.isAlive()){
 				if (t2.isAlive() || isEnde()) {
-				   System.out.println("Fertig, oder 5 Sek abgelaufen.");
+				   System.out.println("Fertig, oder 1 Sek abgelaufen.");
 				   return null;// Die 5 Sekunden sind um; der Thread läuft noch
 				} else {
 				   return stepByStepLab;// Thread ist beendet

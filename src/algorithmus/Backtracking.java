@@ -17,6 +17,7 @@ public class Backtracking extends Algorithmus implements StepByStep{
 	
 	@Override
 	public Labyrinth solveLab(Labyrinth originalLab) {
+		setEnde(false);
 		setStartTime(System.currentTimeMillis());
 		markieren(originalLab.getStart()[0], originalLab.getStart()[1],originalLab);
 		
@@ -134,7 +135,7 @@ public class Backtracking extends Algorithmus implements StepByStep{
 			}
 			if (t1.isAlive()){
 				if (t2.isAlive()|| isEnde()) {
-				   System.out.println("Fertig, oder 5 Sek abgelaufen.");
+				   System.out.println("Fertig, oder 1 Sek abgelaufen.");
 				   return null;// Die 5 Sekunden sind um; der Thread läuft noch
 				} else {
 				   return stepByStepLab;// Thread ist beendet

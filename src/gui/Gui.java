@@ -54,6 +54,8 @@ public class Gui {
 	private ArrayList<Labyrinth> usedLab;
 	private ArrayList<Algorithmus> usedAlg;
 	
+	private Handler handler;
+	
 	public Gui() {
 		usedLab = new ArrayList<Labyrinth>();
 		usedAlg = new ArrayList<Algorithmus>();
@@ -63,7 +65,8 @@ public class Gui {
 		createMainContent();
 		createRightColumn();
 		sizePositionVisibility();
-		settings = new Settings(usedLab, usedAlg, this);
+		handler = new Handler();
+		settings = new Settings(usedLab, usedAlg, this, handler);
 		settings.changeVisibility(true);
 	}
 	
@@ -222,6 +225,7 @@ public class Gui {
 		loeschen.setPreferredSize(new Dimension(83, 30));
 		JButton nextStep = new JButton("Nä. Schritt");
 		nextStep.setPreferredSize(new Dimension(83, 30));
+		nextStep.addActionListener(new nextStepButtonAction(this));
 		JButton start = new JButton("Start");
 		start.setPreferredSize(new Dimension(83, 30));
 		start.addActionListener(new startButtonAction(this));
@@ -289,8 +293,21 @@ public class Gui {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new Handler(usedAlg.get(0), usedAlg.get(1), usedLab.get(0), gui);
+			handler.start();
+		}
+	}
+	
+	public class nextStepButtonAction implements ActionListener {
+		
+		Gui gui;
+		
+		public nextStepButtonAction(Gui gui) {
+			this.gui = gui;
+		}
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			handler.step();
 		}
 	}
 

@@ -1,5 +1,7 @@
 package gui;
 
+import handler.Handler;
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -18,12 +20,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import labyrinth.Labyrinth;
+import labyrinth.LabyrinthGenerator;
 import algorithmus.AStar;
 import algorithmus.Algorithmus;
 import algorithmus.Backtracking;
-
-import labyrinth.Labyrinth;
-import labyrinth.LabyrinthGenerator;
 
 public class Settings {
 
@@ -49,14 +50,19 @@ public class Settings {
 	private Algorithmus alg1;
 	private Algorithmus alg2;
 	private Algorithmus alg3;
+	private Algorithmus alg4;
+	private Algorithmus alg5;
 	private ArrayList<Labyrinth> usedLab;
 	private ArrayList<Algorithmus> usedAlg;
 	private Gui gui;
 	
-	public Settings(ArrayList<Labyrinth> usedLab, ArrayList<Algorithmus> usedAlg, Gui gui) {
+	private Handler handler;
+	
+	public Settings(ArrayList<Labyrinth> usedLab, ArrayList<Algorithmus> usedAlg, Gui gui, Handler handler) {
 		this.usedLab = usedLab;
 		this.usedAlg = usedAlg;
 		this.gui = gui;
+		this.handler = handler;
 		
 		variabelnInitialisieren();		
 		createFrame();
@@ -74,6 +80,8 @@ public class Settings {
 		alg1 = new Backtracking(); // neues Algorithmus-Objekt generieren
 		alg2 = new AStar("Manhattan",true);
 		alg3 = new AStar("Manhattan",false);
+		alg4 = new AStar("Luftlinie",true);
+		alg5 = new AStar("Luftlinie",false);
 		
 	}
 
@@ -202,10 +210,14 @@ public class Settings {
 		alg1Model.addElement(alg1);
 		alg1Model.addElement(alg2);
 		alg1Model.addElement(alg3);
+		alg1Model.addElement(alg4);
+		alg1Model.addElement(alg5);
 		
 		alg2Model.addElement(alg1);
 		alg2Model.addElement(alg2);
 		alg2Model.addElement(alg3);
+		alg2Model.addElement(alg4);
+		alg2Model.addElement(alg5);
 	}
 
 	
@@ -239,6 +251,12 @@ public class Settings {
 			usedAlg.add((Algorithmus) alg1Model.getSelectedItem());
 			usedAlg.add((Algorithmus) alg2Model.getSelectedItem());
 			window.setVisible(false);
+			// = new Handler(usedAlg.get(0), usedAlg.get(1), usedLab.get(0), gui);
+			
+			handler.setAlg1(usedAlg.get(0));
+			handler.setAlg2(usedAlg.get(1));
+			handler.setLabyrinth(usedLab.get(0));
+			handler.setGui(gui);
 			gui.update();
 		}
 		
