@@ -212,6 +212,7 @@ public class Gui {
 		
 		JButton loeschen = new JButton("Löschen");
 		loeschen.setPreferredSize(new Dimension(83, 30));
+		loeschen.addActionListener(new loeschenButtonAction());
 		JButton nextStep = new JButton("Nä. Schritt");
 		nextStep.setPreferredSize(new Dimension(83, 30));
 		nextStep.addActionListener(new nextStepButtonAction());
@@ -280,6 +281,16 @@ public class Gui {
 		public void actionPerformed(ActionEvent e) {
 			handler.step();
 		}
+	}
+	
+	public class loeschenButtonAction implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			window.setVisible(false);
+			handler.resetHandler();
+		}
+		
 	}
 
 }

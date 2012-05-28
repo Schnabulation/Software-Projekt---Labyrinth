@@ -17,6 +17,14 @@ public class Handler {
 		settings = new Settings(this);
 		gui = new Gui(this);
 	}
+	
+	public void resetHandler() {
+		labyrinth = null;
+		alg1 = null;
+		alg2 = null;
+		settings = new Settings(this);
+		gui = new Gui(this);
+	}
 
 	public Labyrinth getLabyrinth() {
 		return labyrinth;
