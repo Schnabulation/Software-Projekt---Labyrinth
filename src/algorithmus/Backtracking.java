@@ -11,6 +11,8 @@ public class Backtracking extends Algorithmus implements StepByStep{
 	private Object lock;
 	private Runnable r1;
 	private Thread t1;
+	Runnable r2;
+	Thread t2;
 	private boolean stepByStep = false;
 	
 	@Override
@@ -22,6 +24,7 @@ public class Backtracking extends Algorithmus implements StepByStep{
 		rekursivLab(originalLab, originalLab.getStart()[0], originalLab.getStart()[1]);
 		
 		setEndTime(System.currentTimeMillis());
+		setEnde(true);
 		return originalLab;
 	}
 	
@@ -73,7 +76,9 @@ public class Backtracking extends Algorithmus implements StepByStep{
 //		originalLab.zeichnen();
 		// currentLabyrinth[y][x]='m';
 		if (stepByStep){
-			
+			synchronized(this){
+				originalLab.setChar(x, y, 'm');
+			}
 			try {
 				lock.notify();
 				lock.wait();
@@ -89,7 +94,9 @@ public class Backtracking extends Algorithmus implements StepByStep{
 //		originalLab.zeichnen();
 		// currentLabyrinth[y][x]='x';
 		if (stepByStep){
-			
+			synchronized(this){
+				originalLab.setChar(x, y, 'x');
+			}
 			try {
 				lock.notify();
 				lock.wait();
@@ -113,29 +120,42 @@ public class Backtracking extends Algorithmus implements StepByStep{
 
 	@Override
 	public Labyrinth nextStep() {
-		Runnable r2 = new MyRunnableTwo();
-		Thread t2 = new Thread(r2);
-		t2.start();
-		
-//		try {
-//			lock.notify();
-//			lock.wait();
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		//stepByStepLab.zeichnen();
-		return stepByStepLab;
+		if (!isEnde()){
+			r2 = new MyRunnableTwo();
+			t2 = new Thread(r2);
+			t2.start();
+			long waitMillis = 1000; // 5 Sekunden
+			try {
+				t1.join(10);
+				t2.join(waitMillis);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (t1.isAlive()){
+				if (t2.isAlive()|| isEnde()) {
+				   System.out.println("Fertig, oder 5 Sek abgelaufen.");
+				   return null;// Die 5 Sekunden sind um; der Thread läuft noch
+				} else {
+				   return stepByStepLab;// Thread ist beendet
+				}
+				
+				} else {return stepByStepLab;}
+			} else{return stepByStepLab;}
 	}
-
-
-
 
 public class MyRunnableOne implements Runnable {
 
 	@Override
 	public void run() {
 		synchronized (lock) {
+			try {
+				lock.notify();
+				lock.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			solveLab(stepByStepLab);
 		}
 	}
@@ -147,9 +167,6 @@ public class MyRunnableTwo implements Runnable {
 	public void run() {
 		synchronized (lock) {
 			for (int i2 = 0; i2 < 1; i2++) {
-				System.out.println("Thread 3: jetzt ich" + i2);
-				
-				//lock.notify();
 				try {
 					lock.notify();
 					lock.wait();

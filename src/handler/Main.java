@@ -13,8 +13,8 @@ public class Main {
 	private static Algorithmus alg2;
 	
 	public static void loadAlg() {
-		alg1 = new Backtracking(); // neues Algorithmus-Objekt generieren
-//		alg1 = new AStar("Manhattan",true);
+		//alg1 = new Backtracking(); // neues Algorithmus-Objekt generieren
+		alg1 = new AStar("Manhattan",true);
 		alg2 = new AStar("Manhattan",false); // neues Algorithmus-Objekt generieren
 	}
 		

@@ -7,6 +7,15 @@ public abstract class Algorithmus implements StepByStep{
 	private int stepCounter;
 	private long startTime;
 	private long endTime;
+	private boolean ende = false;
+
+	public boolean isEnde() {
+		return ende;
+	}
+
+	public void setEnde(boolean ende) {
+		this.ende = ende;
+	}
 
 	public abstract Labyrinth solveLab(Labyrinth originalLab);
 
