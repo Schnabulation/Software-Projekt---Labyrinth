@@ -53,6 +53,20 @@ public class JLabyrinth extends JPanel {
 					graphics.setColor(Color.GREEN);
 					graphics.fillRect(rastermass * j + this.rastermass/4, rastermass * i + this.rastermass/4,
 							this.rastermass/2, this.rastermass/2);
+				} else if (labyrinth.getChar(j, i) == 'o') {
+					graphics.setColor(Color.WHITE);
+					graphics.fillRect(rastermass * j, rastermass * i,
+							this.rastermass, this.rastermass);
+					graphics.setColor(Color.BLUE);
+					graphics.fillRect(rastermass * j + this.rastermass/4, rastermass * i + this.rastermass/4,
+							this.rastermass/2, this.rastermass/2);
+				} else if (labyrinth.getChar(j, i) == 'g') {
+					graphics.setColor(Color.WHITE);
+					graphics.fillRect(rastermass * j, rastermass * i,
+							this.rastermass, this.rastermass);
+					graphics.setColor(Color.YELLOW);
+					graphics.fillRect(rastermass * j + this.rastermass/4, rastermass * i + this.rastermass/4,
+							this.rastermass/2, this.rastermass/2);
 				} else {
 					graphics.setColor(Color.WHITE);
 					graphics.fillRect(rastermass * j, rastermass * i,
