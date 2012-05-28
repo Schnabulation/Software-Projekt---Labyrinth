@@ -242,11 +242,13 @@ public class Gui {
 	}
 	
 	public void labyrinth1Zeichnen(Labyrinth labyrinth) {
+		topLeftPanel.removeAll();
 		topLeftPanel.add(new JLabyrinth(labyrinth, 20));
 		window.validate();
 	}
 	
 	public void labyrinth2Zeichnen(Labyrinth labyrinth) {
+		bottomLeftPanel.removeAll();
 		bottomLeftPanel.add(new JLabyrinth(labyrinth, 20));
 		window.validate();
 	}
