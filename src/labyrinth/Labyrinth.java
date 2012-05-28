@@ -7,14 +7,16 @@ public class Labyrinth implements Cloneable {
 	private int breite;
 	private int[] start;
 	private int[] ende;
+	private int labID;
 	
 	
-	public Labyrinth(char[][] lab, int[] start, int[] ende) {
+	public Labyrinth(char[][] lab, int[] start, int[] ende, int labID) {
 		labRaw = this.invertLab(lab); // dreht das Labyrinth in der Dimension [x][y] --> [y][x]
 		setLaenge(labRaw.length);
 		setBreite(labRaw[1].length);
 		this.setStart(start);
 		this.setEnde(ende);
+		this.labID = labID;
 	}
 
 	private char[][] invertLab(char[][] lab) {
@@ -77,6 +79,10 @@ public class Labyrinth implements Cloneable {
 		labRaw[x][y] = newChar;
 	}
 	
+	public int getID() {
+		return this.labID;
+	}
+	
 	public Labyrinth clone() {
 		char[][] newLab = new char[labRaw[1].length][labRaw.length];
 		for (int i = 0; i < labRaw.length; i++) {
@@ -84,8 +90,12 @@ public class Labyrinth implements Cloneable {
 					newLab[i][j] = labRaw[j][i];
 				}
 			}
-		Labyrinth tempLab = new Labyrinth(newLab, this.getStart(), this.getEnde());
+		Labyrinth tempLab = new Labyrinth(newLab, this.getStart(), this.getEnde(), this.getID());
 		return tempLab;
+	}
+	
+	public String toString() {
+		return "Labyrinth " + labID;
 	}
 	
 }
