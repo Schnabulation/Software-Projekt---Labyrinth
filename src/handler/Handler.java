@@ -1,5 +1,7 @@
 package handler;
 
+import java.util.Scanner;
+
 import gui.Gui;
 import labyrinth.Labyrinth;
 import algorithmus.Algorithmus;
@@ -20,9 +22,17 @@ public class Handler {
 
 	public void start() {
 
-		gui.labyrinth1Zeichnen(alg1.solveLab(labyrinth.clone()));
-		gui.labyrinth2Zeichnen(alg2.solveLab(labyrinth.clone()));
-		alg1.writeStatistics();
-		alg2.writeStatistics();
+		alg1.startStepByStep(labyrinth);
+		Scanner scanner = new Scanner(System.in);
+		for (int i = 0; i < 20; i++) {
+			scanner.nextLine();
+			gui.labyrinth1Zeichnen(alg1.nextStep());
+		}
+
+//		gui.labyrinth1Zeichnen(alg1.nextStep());
+		//gui.labyrinth1Zeichnen(alg1.solveLab(labyrinth.clone()));
+		//gui.labyrinth2Zeichnen(alg2.solveLab(labyrinth.clone()));
+		//alg1.writeStatistics();
+		//alg2.writeStatistics();
 	}
 }

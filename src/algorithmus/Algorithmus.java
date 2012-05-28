@@ -2,7 +2,7 @@ package algorithmus;
 
 import labyrinth.Labyrinth;
 
-public abstract class Algorithmus {
+public abstract class Algorithmus implements StepByStep{
 	
 	private int stepCounter;
 	private long startTime;

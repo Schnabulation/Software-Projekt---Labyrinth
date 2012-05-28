@@ -53,8 +53,9 @@ public class Main {
 	}
 	
 	public static void loadAlg() {
-		//alg1 = new Backtracking(); // neues Algorithmus-Objekt generieren
-		alg1 = new AStar("Manhattan",true);
+		alg1 = new Backtracking(); // neues Algorithmus-Objekt generieren
+		//alg2 = new Backtracking();
+		//alg1 = new AStar("Manhattan",true);
 		alg2 = new AStar("Manhattan",false); // neues Algorithmus-Objekt generieren
 	}
 		
