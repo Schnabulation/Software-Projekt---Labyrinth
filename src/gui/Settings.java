@@ -8,6 +8,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -18,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import labyrinth.Labyrinth;
+import labyrinth.LabyrinthGenerator;
 
 public class Settings {
 
@@ -38,14 +41,20 @@ public class Settings {
 	private JComboBox alg1Box;
 	private JComboBox alg2Box;
 	private JComboBox labyrinthBox;
+	private Labyrinth lab1;
+	private Labyrinth lab2;
 	
 
 	public Settings() {
+		lab1 = LabyrinthGenerator.loadLab(1);
+		lab2 = LabyrinthGenerator.loadLab(2);
+		
 		createFrame();
 		createMainContent();
 		createRightColumn();
-		labyrinthZeichnen(loadLab());
+		labyrinthZeichnen(LabyrinthGenerator.loadLab(1));
 		sizePositionVisibility();
+		fillDropdowns();
 	}
 
 	public void createFrame() {
@@ -164,8 +173,12 @@ public class Settings {
 		topAlignPanel.add(rightForthPanel,con_x0_y3_special);
 		
 		rightPanel.add(topAlignPanel,BorderLayout.NORTH);
-
-		
+	}
+	
+	public void fillDropdowns() {
+		labyrinthModel.addElement(lab1);
+		labyrinthModel.addElement(lab2);
+		labyrinthBox.addActionListener(new labyrinthBoxAction());
 	}
 
 	
@@ -174,48 +187,19 @@ public class Settings {
 	}
 	
 	public void labyrinthZeichnen(Labyrinth labyrinth) {
+		leftPanel.removeAll();
 		leftPanel.add(new JLabyrinth(labyrinth, 13));
 		window.validate();
 	}
 	
-	public Labyrinth loadLab() {
-		int[] start = new int[2]; // Variable f�r den Startpunkt definieren und bef�llen
-		start[0] = 0;
-		start[1] = 3;
-		
-		int[] ende = new int[2]; // Variable f�r den Endpunkt definieren und bef�llen
-		ende[0] = 11;
-		ende[1] = 2;
-		
-//		char[][] lab = { // Labyrinth definieren
-//		{ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0' },
-//				{ '0', '0', '0', '1', '0', '0', '1', '1', '0', '0', '0', '0' },
-//				{ '0', '0', '0', '1', '1', '0', '1', '0', '0', '1', '1', '1' },
-//				{ '1', '1', '1', '0', '1', '0', '1', '1', '1', '1', '0', '0' },
-//				{ '0', '0', '1', '0', '1', '0', '1', '0', '0', '0', '0', '0' },
-//				{ '0', '0', '1', '1', '1', '0', '1', '0', '0', '0', '0', '0' },
-//				{ '0', '0', '0', '0', '1', '0', '1', '1', '1', '0', '1', '0' },
-//				{ '0', '0', '0', '1', '1', '0', '1', '0', '1', '0', '1', '0' },
-//				{ '0', '1', '1', '1', '0', '0', '0', '0', '1', '1', '1', '0' },
-//				{ '0', '1', '0', '1', '1', '1', '1', '0', '1', '0', '1', '0' },
-//				{ '0', '1', '1', '0', '0', '0', '1', '1', '1', '0', '0', '0' },
-//				{ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0' } };
-		
-		char[][] lab = { // Labyrinth definieren
-				{ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0' },
-				{ '0', '1', '1', '1', '0', '1', '1', '1', '0', '1', '1', '0' },
-				{ '0', '1', '0', '0', '0', '1', '0', '0', '0', '0', '1', '1' },
-				{ '1', '1', '0', '1', '1', '1', '0', '1', '0', '1', '1', '0' },
-				{ '0', '1', '1', '1', '0', '0', '0', '1', '0', '0', '1', '0' },
-				{ '0', '0', '1', '1', '0', '1', '0', '1', '1', '0', '1', '0' },
-				{ '0', '1', '1', '1', '1', '1', '0', '0', '1', '1', '1', '0' },
-				{ '0', '1', '0', '0', '0', '1', '1', '0', '1', '1', '0', '0' },
-				{ '0', '1', '1', '1', '0', '1', '0', '0', '0', '1', '1', '0' },
-				{ '0', '0', '0', '1', '1', '1', '1', '1', '0', '1', '0', '0' },
-				{ '0', '1', '1', '1', '0', '1', '0', '1', '1', '1', '1', '0' },
-				{ '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0' } };
+	private class labyrinthBoxAction implements ActionListener {
 
-		return new Labyrinth(lab, start, ende); // neues Labyrinth-Objekt generieren mit den obigen Daten
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			labyrinthZeichnen((Labyrinth) labyrinthModel.getSelectedItem());
+			
+		}
+		
 	}
 
 }
