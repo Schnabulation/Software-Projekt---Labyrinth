@@ -3,9 +3,6 @@ package algorithmus;
 import java.util.List;
 import java.util.Vector;
 
-import algorithmus.Backtracking.MyRunnableOne;
-import algorithmus.Backtracking.MyRunnableTwo;
-
 import labyrinth.Labyrinth;
 
 public class AStar extends Algorithmus {
@@ -149,7 +146,6 @@ public class AStar extends Algorithmus {
 				lock.notify();
 				lock.wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -178,7 +174,6 @@ public class AStar extends Algorithmus {
 				lock.notify();
 				lock.wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -196,8 +191,6 @@ public class AStar extends Algorithmus {
 	
 	@Override
 	public void startStepByStep(Labyrinth lab) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 		this.stepByStep = true;
 		this.stepByStepLab = lab;
 		lock = new Object();
@@ -207,7 +200,6 @@ public class AStar extends Algorithmus {
 	}
 	@Override
 	public Labyrinth nextStep() {
-		// TODO Auto-generated method stub
 		if (!isEnde()){
 			r2 = new MyRunnableTwo();
 			t2 = new Thread(r2);
@@ -217,7 +209,6 @@ public class AStar extends Algorithmus {
 				t1.join(10);
 				t2.join(waitMillis);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (t1.isAlive()){
@@ -242,7 +233,6 @@ public class AStar extends Algorithmus {
 					lock.notify();
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				solveLab(stepByStepLab);
@@ -260,7 +250,6 @@ public class AStar extends Algorithmus {
 						lock.notify();
 						lock.wait();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

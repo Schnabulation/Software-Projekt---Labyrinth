@@ -11,7 +11,6 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -52,16 +51,9 @@ public class Settings {
 	private Algorithmus alg3;
 	private Algorithmus alg4;
 	private Algorithmus alg5;
-	private ArrayList<Labyrinth> usedLab;
-	private ArrayList<Algorithmus> usedAlg;
-	private Gui gui;
-	
 	private Handler handler;
 	
-	public Settings(ArrayList<Labyrinth> usedLab, ArrayList<Algorithmus> usedAlg, Gui gui, Handler handler) {
-		this.usedLab = usedLab;
-		this.usedAlg = usedAlg;
-		this.gui = gui;
+	public Settings(Handler handler) {
 		this.handler = handler;
 		
 		variabelnInitialisieren();		
@@ -77,7 +69,7 @@ public class Settings {
 		lab1 = LabyrinthGenerator.loadLab(1);
 		lab2 = LabyrinthGenerator.loadLab(2);
 		
-		alg1 = new Backtracking(); // neues Algorithmus-Objekt generieren
+		alg1 = new Backtracking();
 		alg2 = new AStar("Manhattan",true);
 		alg3 = new AStar("Manhattan",false);
 		alg4 = new AStar("Luftlinie",true);
@@ -244,20 +236,10 @@ public class Settings {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			usedLab.removeAll(usedLab);
-			usedLab.add((Labyrinth) labyrinthModel.getSelectedItem());
-			
-			usedAlg.removeAll(usedAlg);
-			usedAlg.add((Algorithmus) alg1Model.getSelectedItem());
-			usedAlg.add((Algorithmus) alg2Model.getSelectedItem());
 			window.setVisible(false);
-			// = new Handler(usedAlg.get(0), usedAlg.get(1), usedLab.get(0), gui);
-			
-			handler.setAlg1(usedAlg.get(0));
-			handler.setAlg2(usedAlg.get(1));
-			handler.setLabyrinth(usedLab.get(0));
-			handler.setGui(gui);
-			gui.update();
+			handler.setAlg1((Algorithmus) alg1Model.getSelectedItem());
+			handler.setAlg2((Algorithmus) alg2Model.getSelectedItem());
+			handler.setLabyrinth((Labyrinth) labyrinthModel.getSelectedItem());
 		}
 		
 	}

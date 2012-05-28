@@ -3,7 +3,6 @@ package gui;
 import handler.Handler;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -12,7 +11,6 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,9 +20,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
-
-import algorithmus.Algorithmus;
-
 import labyrinth.Labyrinth;
 
 public class Gui {
@@ -50,24 +45,18 @@ public class Gui {
 	private JPanel rightSecondPanel;
 	private JPanel rightThirdPanel;
 	private JPanel rightForthPanel;
-	private Settings settings;
-	private ArrayList<Labyrinth> usedLab;
-	private ArrayList<Algorithmus> usedAlg;
-	
 	private Handler handler;
 	
-	public Gui() {
-		usedLab = new ArrayList<Labyrinth>();
-		usedAlg = new ArrayList<Algorithmus>();
+	public Gui(Handler handler) {
+		this.handler = handler;
 		
 		createFrame();
 		createMenu();
 		createMainContent();
 		createRightColumn();
 		sizePositionVisibility();
-		handler = new Handler();
-		settings = new Settings(usedLab, usedAlg, this, handler);
-		settings.changeVisibility(true);
+		
+		handler.openSettings();
 	}
 	
 	public void createFrame() {
@@ -225,10 +214,10 @@ public class Gui {
 		loeschen.setPreferredSize(new Dimension(83, 30));
 		JButton nextStep = new JButton("Nä. Schritt");
 		nextStep.setPreferredSize(new Dimension(83, 30));
-		nextStep.addActionListener(new nextStepButtonAction(this));
+		nextStep.addActionListener(new nextStepButtonAction());
 		JButton start = new JButton("Start");
 		start.setPreferredSize(new Dimension(83, 30));
-		start.addActionListener(new startButtonAction(this));
+		start.addActionListener(new startButtonAction());
 		
 		rightForthPanel.add(loeschen,BorderLayout.WEST);
 		rightForthPanel.add(nextStep,BorderLayout.CENTER);
@@ -269,27 +258,15 @@ public class Gui {
 		window.validate();
 	}
 	
-	public void update() {
-		labyrinth1Zeichnen(usedLab.get(0));
-		labyrinth2Zeichnen(usedLab.get(0));
-	}
-	
 	private class neuerVergleichAction implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			settings.changeVisibility(true);
-		}
-		
+			handler.openSettings();
+		}	
 	}
 	
 	public class startButtonAction implements ActionListener {
-		
-		Gui gui;
-		
-		public startButtonAction(Gui gui) {
-			this.gui = gui;
-		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -298,12 +275,6 @@ public class Gui {
 	}
 	
 	public class nextStepButtonAction implements ActionListener {
-		
-		Gui gui;
-		
-		public nextStepButtonAction(Gui gui) {
-			this.gui = gui;
-		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
