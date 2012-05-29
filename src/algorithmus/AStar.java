@@ -27,6 +27,7 @@ public class AStar extends Algorithmus {
 	@Override
 	public Labyrinth solveLab(Labyrinth originalLab) {
 		setStartTime(System.currentTimeMillis());
+		setStepCounter(0);
 		//markieren(originalLab.getStart()[0], originalLab.getStart()[1],originalLab);
 		doWork(originalLab);
 		

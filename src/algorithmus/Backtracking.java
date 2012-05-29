@@ -19,6 +19,7 @@ public class Backtracking extends Algorithmus implements StepByStep{
 	public Labyrinth solveLab(Labyrinth originalLab) {
 		setEnde(false);
 		setStartTime(System.currentTimeMillis());
+		setStepCounter(0);
 		markieren(originalLab.getStart()[0], originalLab.getStart()[1],originalLab);
 		
 		//CODE!
