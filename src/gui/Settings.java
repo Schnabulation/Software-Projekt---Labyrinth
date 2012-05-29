@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import labyrinth.Labyrinth;
@@ -236,13 +237,17 @@ public class Settings {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			window.setVisible(false);
-			handler.setAlg1((Algorithmus) alg1Model.getSelectedItem());
-			handler.setAlg2((Algorithmus) alg2Model.getSelectedItem());
-			handler.setLabyrinth((Labyrinth) labyrinthModel.getSelectedItem());
-			handler.resetGuiStatistics();
+			if (alg1Model.getSelectedItem() == alg2Model.getSelectedItem()) {
+				JOptionPane.showMessageDialog(window, "Bitte wählen Sie zwei verschiedene Algorithmen",
+						"Nicht geklappt", JOptionPane.ERROR_MESSAGE);
+			} else {
+				window.setVisible(false);
+				handler.setAlg1((Algorithmus) alg1Model.getSelectedItem());
+				handler.setAlg2((Algorithmus) alg2Model.getSelectedItem());
+				handler.setLabyrinth((Labyrinth) labyrinthModel.getSelectedItem());
+				handler.resetGuiStatistics();
+			}
 		}
-		
 	}
 
 }
