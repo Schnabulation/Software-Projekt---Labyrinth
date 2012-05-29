@@ -263,6 +263,7 @@ public class Gui {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			handler.resetHandler();
 			handler.openSettings();
 		}	
 	}
@@ -287,7 +288,9 @@ public class Gui {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			window.setVisible(false);
+			topLeftPanel.removeAll();
+			bottomLeftPanel.removeAll();
+			window.repaint();
 			handler.resetHandler();
 		}
 		

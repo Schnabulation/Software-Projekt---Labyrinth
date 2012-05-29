@@ -23,7 +23,6 @@ public class Handler {
 		alg1 = null;
 		alg2 = null;
 		settings = new Settings(this);
-		gui = new Gui(this);
 	}
 
 	public Labyrinth getLabyrinth() {
