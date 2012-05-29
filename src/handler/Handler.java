@@ -19,6 +19,7 @@ public class Handler {
 	public Handler() {
 		settings = new Settings(this);
 		gui = new Gui(this);
+		gui.setEnable(false);
 	}
 	
 	public void resetHandler() {
@@ -99,6 +100,9 @@ public class Handler {
 		}
 		}
 	
+	public void guiSetEnable(boolean b) {
+		gui.setEnable(b);
+	}
 	
 public class MyRunnableThree implements Runnable {
 
@@ -106,7 +110,7 @@ public class MyRunnableThree implements Runnable {
 	public void run() {
 		synchronized (this) {
 			while(!alg1.isEnde() || !alg2.isEnde()){
-				speed = 1000;	// Hier GUI Methode getSpeed();
+				speed = gui.getSpeed();
 				try {
 					Thread.sleep(speed);
 				} catch (InterruptedException e) {

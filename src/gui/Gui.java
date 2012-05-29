@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +20,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JSlider;
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
+
 import labyrinth.Labyrinth;
 
 public class Gui {
@@ -48,6 +52,8 @@ public class Gui {
 	private Handler handler;
 	private JLabel abgelaufeneZeit;
 	private JLabel anzahlSchritte;
+	private JPanel rightFifthPanel;
+	private JSlider speed;
 	
 	public Gui(Handler handler) {
 		this.handler = handler;
@@ -146,8 +152,6 @@ public class Gui {
 		mainPanel.add(horiSeperator,con_x0_y1);
 		
 		contentPane.add(BorderLayout.CENTER, mainPanel);
-
-
 	}
 	
 	public void createRightColumn() {
@@ -176,8 +180,15 @@ public class Gui {
 		con_x0_y3_special.gridy = 3;
 		con_x0_y3_special.gridx = 0;
 //		con_x0_y3_special.weighty = 0.1;
-		con_x0_y3_special.insets = new Insets(250,0,0,0);
+		con_x0_y3_special.insets = new Insets(150,0,0,0);
 		con_x0_y3_special.anchor = GridBagConstraints.PAGE_START;
+		
+		GridBagConstraints con_x0_y4_special = new GridBagConstraints();
+		con_x0_y4_special.gridy = 4;
+		con_x0_y4_special.gridx = 0;
+//		con_x0_y4_special.weighty = 0.1;
+		con_x0_y4_special.insets = new Insets(20,0,0,0);
+		con_x0_y4_special.anchor = GridBagConstraints.PAGE_START;
 		
 		
 		rightFirstPanel = new JPanel();
@@ -197,8 +208,13 @@ public class Gui {
 		
 		rightForthPanel = new JPanel();
 //		rightForthPanel.setBackground(Color.green);
-		rightForthPanel.setPreferredSize(new Dimension(250, 30));
+		rightForthPanel.setPreferredSize(new Dimension(250, 80));
 		rightForthPanel.setLayout(new BorderLayout());
+		
+		rightFifthPanel = new JPanel();
+//		rightFifthPanel.setBackground(Color.white);
+		rightFifthPanel.setPreferredSize(new Dimension(250, 30));
+		rightFifthPanel.setLayout(new BorderLayout());
 		
 		JButton neuerVergleich = new JButton("Neuer Vergleich");
 		neuerVergleich.addActionListener(new neuerVergleichAction());
@@ -212,19 +228,30 @@ public class Gui {
 		"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
 		rightThirdPanel.add(anzahlSchritte,BorderLayout.NORTH);
 		
+		speed = new JSlider(0, 1000, 100); 
+		speed.setMinorTickSpacing(100);
+		speed.setMajorTickSpacing(200);
+		speed.setPaintTicks(true);
+		speed.setPaintLabels(true);
+		
 		JButton loeschen = new JButton("Löschen");
 		loeschen.setPreferredSize(new Dimension(83, 30));
 		loeschen.addActionListener(new loeschenButtonAction());
-		JButton nextStep = new JButton("Nä. Schritt");
+		JButton nextStep = new JButton("Step");
 		nextStep.setPreferredSize(new Dimension(83, 30));
 		nextStep.addActionListener(new nextStepButtonAction());
 		JButton start = new JButton("Start");
 		start.setPreferredSize(new Dimension(83, 30));
 		start.addActionListener(new startButtonAction());
 		
-		rightForthPanel.add(loeschen,BorderLayout.WEST);
-		rightForthPanel.add(nextStep,BorderLayout.CENTER);
-		rightForthPanel.add(start,BorderLayout.EAST);
+		TitledBorder rightForthPanelBorder;
+		rightForthPanelBorder = BorderFactory.createTitledBorder("Speed (Wartezeit in ms)");
+		rightForthPanel.setBorder(rightForthPanelBorder);
+		rightForthPanel.add(speed,BorderLayout.NORTH);
+		
+		rightFifthPanel.add(loeschen,BorderLayout.WEST);
+		rightFifthPanel.add(nextStep,BorderLayout.CENTER);
+		rightFifthPanel.add(start,BorderLayout.EAST);
 		
 		JPanel topAlignPanel = new JPanel();
 		topAlignPanel.setLayout(new GridBagLayout());
@@ -233,6 +260,7 @@ public class Gui {
 		topAlignPanel.add(rightSecondPanel,con_x0_y1_special);
 		topAlignPanel.add(rightThirdPanel,con_x0_y2_special);
 		topAlignPanel.add(rightForthPanel,con_x0_y3_special);
+		topAlignPanel.add(rightFifthPanel,con_x0_y4_special);
 		
 		rightColumnPanel.add(topAlignPanel,BorderLayout.NORTH);
 		
@@ -277,12 +305,21 @@ public class Gui {
 		window.validate();
 	}
 	
+	public int getSpeed() {
+		return speed.getValue();
+	}
+	
+	public void setEnable(boolean b) {
+		window.setEnabled(b);
+	}
+	
 	private class neuerVergleichAction implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			handler.resetHandler();
 			handler.openSettings();
+			setEnable(false);
 		}	
 	}
 	
@@ -290,7 +327,12 @@ public class Gui {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			handler.start();
+			
+			if (speed.getValue() == 0) {
+				handler.start();
+			} else {
+			handler.speed();
+			}
 		}
 	}
 	
