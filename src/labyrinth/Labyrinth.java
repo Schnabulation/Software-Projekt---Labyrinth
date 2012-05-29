@@ -8,15 +8,16 @@ public class Labyrinth implements Cloneable {
 	private int[] start;
 	private int[] ende;
 	private int labID;
+	private int rastermass;
 	
-	
-	public Labyrinth(char[][] lab, int[] start, int[] ende, int labID) {
+	public Labyrinth(char[][] lab, int[] start, int[] ende, int labID, int rastermass) {
 		labRaw = this.invertLab(lab); // dreht das Labyrinth in der Dimension [x][y] --> [y][x]
 		setLaenge(labRaw.length);
 		setBreite(labRaw[1].length);
 		this.setStart(start);
 		this.setEnde(ende);
 		this.labID = labID;
+		this.rastermass = rastermass;
 	}
 
 	private char[][] invertLab(char[][] lab) {
@@ -90,12 +91,20 @@ public class Labyrinth implements Cloneable {
 					newLab[i][j] = labRaw[j][i];
 				}
 			}
-		Labyrinth tempLab = new Labyrinth(newLab, this.getStart(), this.getEnde(), this.getID());
+		Labyrinth tempLab = new Labyrinth(newLab, this.getStart(), this.getEnde(), this.getID(), this.getRastermass());
 		return tempLab;
 	}
 	
 	public String toString() {
 		return "Labyrinth " + labID;
+	}
+
+	public void setRastermass(int rastermass) {
+		this.rastermass = rastermass;
+	}
+
+	public int getRastermass() {
+		return rastermass;
 	}
 	
 }

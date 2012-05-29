@@ -47,6 +47,7 @@ public class Settings {
 	private JComboBox labyrinthBox;
 	private Labyrinth lab1;
 	private Labyrinth lab2;
+	private Labyrinth lab3;
 	private Algorithmus alg1;
 	private Algorithmus alg2;
 	private Algorithmus alg3;
@@ -69,6 +70,7 @@ public class Settings {
 	public void variabelnInitialisieren() {
 		lab1 = LabyrinthGenerator.loadLab(1);
 		lab2 = LabyrinthGenerator.loadLab(2);
+		lab3 = LabyrinthGenerator.loadLab(3);
 		
 		alg1 = new Backtracking();
 		alg2 = new AStar("Manhattan",true);
@@ -198,6 +200,7 @@ public class Settings {
 	public void fillDropdowns() {
 		labyrinthModel.addElement(lab1);
 		labyrinthModel.addElement(lab2);
+		labyrinthModel.addElement(lab3);
 		labyrinthBox.addActionListener(new labyrinthBoxAction());
 		
 		alg1Model.addElement(alg1);
@@ -220,7 +223,7 @@ public class Settings {
 	
 	public void labyrinthZeichnen(Labyrinth labyrinth) {
 		leftPanel.removeAll();
-		leftPanel.add(new JLabyrinth(labyrinth, 13));
+		leftPanel.add(new JLabyrinth(labyrinth, (labyrinth.getRastermass() / 3 * 2)));
 		window.validate();
 	}
 	
