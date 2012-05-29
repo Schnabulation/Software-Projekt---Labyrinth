@@ -80,7 +80,6 @@ public class Handler {
 			alg1.startStepByStep(labyrinth.clone());
 			alg2.startStepByStep(labyrinth.clone());
 		}
-		System.out.println("im STep" + alg1.isEnde());
 		if(!alg1.isEnde() || !alg2.isEnde()){
 			gui.labyrinth1Zeichnen(alg1.nextStep());
 			gui.labyrinth2Zeichnen(alg2.nextStep());
