@@ -63,15 +63,14 @@ public class Handler {
 		settings.changeVisibility(true);
 	}
 	
-	public void updateGui(Labyrinth labyrinth) {
-		
+	public void resetGuiStatistics() {
+		gui.resetStatistics();
 	}
 
 	public void start() {
 		gui.labyrinth1Zeichnen(alg1.solveLab(labyrinth.clone()));
 		gui.labyrinth2Zeichnen(alg2.solveLab(labyrinth.clone()));
-//		alg1.writeStatistics();
-//		alg2.writeStatistics();
+		gui.updateStatistics(alg1.getStepCounter(), alg2.getStepCounter(), alg1.getSolveTime(), alg2.getSolveTime());
 	}
 	public void step(){
 		if(alg1.getStepCounter() == 0 && alg2.getStepCounter()==0){
