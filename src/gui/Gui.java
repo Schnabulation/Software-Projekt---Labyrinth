@@ -46,6 +46,8 @@ public class Gui {
 	private JPanel rightThirdPanel;
 	private JPanel rightForthPanel;
 	private Handler handler;
+	private JLabel abgelaufeneZeit;
+	private JLabel anzahlSchritte;
 	
 	public Gui(Handler handler) {
 		this.handler = handler;
@@ -202,12 +204,12 @@ public class Gui {
 		neuerVergleich.addActionListener(new neuerVergleichAction());
 		rightFirstPanel.add(neuerVergleich,BorderLayout.CENTER);
 		
-		JLabel abgelaufeneZeit = new JLabel("<html>Abgelaufene Zeit:<br>" +
-				"Alg. 1: 01:12<br>Alg. 2: 04:21<br>Differenz: 03:09</html>");
+		abgelaufeneZeit = new JLabel("<html>Abgelaufene Zeit (in ms):<br>" +
+				"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
 		rightSecondPanel.add(abgelaufeneZeit,BorderLayout.NORTH);
 		
-		JLabel anzahlSchritte = new JLabel("<html>Anzahl Schritte:<br>" +
-		"Alg. 1: 43<br>Alg. 2: 102<br>Differenz: 99</html>");
+		anzahlSchritte = new JLabel("<html>Anzahl Schritte:<br>" +
+		"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
 		rightThirdPanel.add(anzahlSchritte,BorderLayout.NORTH);
 		
 		JButton loeschen = new JButton("Löschen");
@@ -247,6 +249,22 @@ public class Gui {
 
 	}
 	
+	public void updateStatistics(int anzSchritteAlg1, int anzSchritteAlg2, long anzMillisAlg1, long anzMillisAlg2) {
+		abgelaufeneZeit.setText("<html>Abgelaufene Zeit (in ms): <br>" +
+		"Alg. 1: " + anzMillisAlg1 + "<br>Alg. 2: " + anzMillisAlg2 + "<br>Differenz: " + Math.abs(anzMillisAlg1 - anzMillisAlg2) + "</html>");
+
+		anzahlSchritte.setText("<html>Anzahl Schritte:<br>" +
+		"Alg. 1: " + anzSchritteAlg1 + "<br>Alg. 2: " + anzSchritteAlg2 + "<br>Differenz: " + Math.abs(anzSchritteAlg1 - anzSchritteAlg2) + "</html>");
+	}
+	
+	public void resetStatistics() {
+		abgelaufeneZeit.setText("<html>Abgelaufene Zeit (in ms):<br>" +
+		"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
+		
+		anzahlSchritte.setText("<html>Anzahl Schritte:<br>" +
+		"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
+	}
+	
 	public void labyrinth1Zeichnen(Labyrinth labyrinth) {
 		topLeftPanel.removeAll();
 		topLeftPanel.add(new JLabyrinth(labyrinth, 20));
@@ -263,6 +281,7 @@ public class Gui {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			handler.resetHandler();
 			handler.openSettings();
 		}	
 	}
@@ -287,7 +306,10 @@ public class Gui {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			window.setVisible(false);
+			topLeftPanel.removeAll();
+			bottomLeftPanel.removeAll();
+			resetStatistics();
+			window.repaint();
 			handler.resetHandler();
 		}
 		
