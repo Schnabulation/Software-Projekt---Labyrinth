@@ -58,6 +58,5 @@ public abstract class Algorithmus implements StepByStep{
 		String classname = this.getClass().getName();
 		int mid = classname.lastIndexOf ('.') + 1;
 		return classname.substring(mid);
-	}
-	
+	}	
 }

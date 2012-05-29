@@ -12,6 +12,9 @@ public class Handler {
 	private Algorithmus alg2;
 	private Gui gui;
 	private Settings settings;
+	private int speed;
+	private Runnable r3;
+	private Thread t3;
 	
 	public Handler() {
 		settings = new Settings(this);
@@ -84,4 +87,38 @@ public class Handler {
 			gui.updateStatistics(alg1.getStepCounter(), alg2.getStepCounter(), alg1.getSolveTime(), alg2.getSolveTime());
 		}
 	}
+	public void speed(){
+		r3 = new MyRunnableThree();
+		t3 = new Thread(r3);
+		
+		if(alg1.getStepCounter() == 0 && alg2.getStepCounter()==0){
+		
+			alg1.startStepByStep(labyrinth.clone());
+			alg2.startStepByStep(labyrinth.clone());
+			t3.start();
+		}
+		}
+	
+	
+public class MyRunnableThree implements Runnable {
+
+	@Override
+	public void run() {
+		synchronized (this) {
+			while(!alg1.isEnde() || !alg2.isEnde()){
+				speed = 1000;	// Hier GUI Methode getSpeed();
+				try {
+					Thread.sleep(speed);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}					
+				gui.labyrinth1Zeichnen(alg1.nextStep());
+				gui.labyrinth2Zeichnen(alg2.nextStep());
+				gui.updateStatistics(alg1.getStepCounter(), alg2.getStepCounter(), alg1.getSolveTime(), alg2.getSolveTime());
+				}
+		}
+	}
+
+}
 }

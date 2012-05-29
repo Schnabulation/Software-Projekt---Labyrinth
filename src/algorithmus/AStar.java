@@ -3,6 +3,8 @@ package algorithmus;
 import java.util.List;
 import java.util.Vector;
 
+import algorithmus.Backtracking.MyRunnableTwo;
+
 import labyrinth.Labyrinth;
 
 public class AStar extends Algorithmus {
@@ -223,7 +225,6 @@ public class AStar extends Algorithmus {
 				} else {return stepByStepLab;}
 			} else{return stepByStepLab;}
 	}
-	
 	
 	public class MyRunnableOne implements Runnable {
 
