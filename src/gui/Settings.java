@@ -48,6 +48,8 @@ public class Settings {
 	private Labyrinth lab1;
 	private Labyrinth lab2;
 	private Labyrinth lab3;
+	private Labyrinth lab4;
+	private Labyrinth lab5;
 	private Algorithmus alg1;
 	private Algorithmus alg2;
 	private Algorithmus alg3;
@@ -71,6 +73,8 @@ public class Settings {
 		lab1 = LabyrinthGenerator.loadLab(1);
 		lab2 = LabyrinthGenerator.loadLab(2);
 		lab3 = LabyrinthGenerator.loadLab(3);
+		lab4 = LabyrinthGenerator.loadLab(4);
+		lab5 = LabyrinthGenerator.loadLab(5);
 		
 		alg1 = new Backtracking();
 		alg2 = new AStar("Manhattan",true);
@@ -201,6 +205,8 @@ public class Settings {
 		labyrinthModel.addElement(lab1);
 		labyrinthModel.addElement(lab2);
 		labyrinthModel.addElement(lab3);
+		labyrinthModel.addElement(lab4);
+		labyrinthModel.addElement(lab5);
 		labyrinthBox.addActionListener(new labyrinthBoxAction());
 		
 		alg1Model.addElement(alg1);
