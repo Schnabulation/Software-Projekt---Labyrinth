@@ -26,6 +26,7 @@ public class Backtracking extends Algorithmus implements StepByStep{
 		rekursivLab(originalLab, originalLab.getStart()[0], originalLab.getStart()[1]);
 		
 		setEndTime(System.currentTimeMillis());
+		setStepFinalWay(zielWeg(originalLab));
 		setEnde(true);
 		return originalLab;
 	}
@@ -71,9 +72,22 @@ public class Backtracking extends Algorithmus implements StepByStep{
 		 }
 		 return false;
 	}
+	 
+	 public int zielWeg(Labyrinth originalLab) {
+		 int step = 0;
+		 for (int i = 0; i < originalLab.getBreite(); i++) {
+			for (int j = 0; j < originalLab.getLaenge(); j++) {
+				if (originalLab.getChar(i, j)=='m'){
+					step++;
+				}
+			}
+		}
+	return step;
+	}
 	
 	public void markieren(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
+		setEndTime(System.currentTimeMillis());
 		originalLab.setChar(x, y, 'm');
 //		originalLab.zeichnen();
 		// currentLabyrinth[y][x]='m';
@@ -92,6 +106,7 @@ public class Backtracking extends Algorithmus implements StepByStep{
 	}
 	public void demarkieren(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
+		setEndTime(System.currentTimeMillis());
 		originalLab.setChar(x, y, 'x');
 //		originalLab.zeichnen();
 		// currentLabyrinth[y][x]='x';
@@ -126,9 +141,9 @@ public class Backtracking extends Algorithmus implements StepByStep{
 			r2 = new MyRunnableTwo();
 			t2 = new Thread(r2);
 			t2.start();
-			long waitMillis = 1000; // 5 Sekunden
+			long waitMillis = 10; // 5 Sekunden
 			try {
-				t1.join(10);
+				//t1.join(10);
 				t2.join(waitMillis);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -161,8 +176,8 @@ public class MyRunnableOne implements Runnable {
 			solveLab(stepByStepLab);
 		}
 	}
-
 }
+
 public class MyRunnableTwo implements Runnable {
 
 	@Override

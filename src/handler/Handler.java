@@ -74,7 +74,7 @@ public class Handler {
 	public void start() {
 		gui.labyrinth1Zeichnen(alg1.solveLab(labyrinth.clone()));
 		gui.labyrinth2Zeichnen(alg2.solveLab(labyrinth.clone()));
-		gui.updateStatistics(alg1.getStepCounter(), alg2.getStepCounter(), alg1.getSolveTime(), alg2.getSolveTime());
+		gui.updateStatistics(alg1.getStepCounter(), alg2.getStepCounter(), alg1.getStepFinalWay(), alg2.getStepFinalWay());
 	}
 	public void step(){
 		if(alg1.getStepCounter() == 0 && alg2.getStepCounter()==0){
@@ -85,7 +85,7 @@ public class Handler {
 		if(!alg1.isEnde() || !alg2.isEnde()){
 			gui.labyrinth1Zeichnen(alg1.nextStep());
 			gui.labyrinth2Zeichnen(alg2.nextStep());
-			gui.updateStatistics(alg1.getStepCounter(), alg2.getStepCounter(), alg1.getSolveTime(), alg2.getSolveTime());
+			gui.updateStatistics(alg1.getStepCounter(), alg2.getStepCounter(), alg1.getStepFinalWay(), alg2.getStepFinalWay());
 		}
 	}
 	public void speed(){
@@ -119,7 +119,7 @@ public class MyRunnableThree implements Runnable {
 				}					
 				gui.labyrinth1Zeichnen(alg1.nextStep());
 				gui.labyrinth2Zeichnen(alg2.nextStep());
-				gui.updateStatistics(alg1.getStepCounter(), alg2.getStepCounter(), alg1.getSolveTime(), alg2.getSolveTime());
+				gui.updateStatistics(alg1.getStepCounter(), alg2.getStepCounter(), alg1.getStepFinalWay(), alg2.getStepFinalWay());
 				}
 		}
 	}

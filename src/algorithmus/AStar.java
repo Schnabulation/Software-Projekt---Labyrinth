@@ -34,6 +34,7 @@ public class AStar extends Algorithmus {
 		//din CODE! Falls au rekursiv, bruchts evtl au e neui Methode, siehe Backtracking.
 		
 		setEndTime(System.currentTimeMillis());
+		setStepFinalWay(zielWeg(originalLab));
 		setEnde(true);
 		return originalLab;
 	}
@@ -86,7 +87,7 @@ public class AStar extends Algorithmus {
 				if (n.getX()==lab.getEnde()[0] && n.getY()==lab.getEnde()[1]){
 					AStarKnoten k = n;
 					while (k != null){
-						markieren(k.getX(), k.getY(), lab);
+						markierenFertig(k.getX(), k.getY(), lab);
 						k=k.getParent();
 					}
 					
@@ -134,8 +135,21 @@ public class AStar extends Algorithmus {
 		return a+b;
 	}
 	
+	 public int zielWeg(Labyrinth originalLab) {
+		 int step = 0;
+		 for (int i = 0; i < originalLab.getBreite(); i++) {
+			for (int j = 0; j < originalLab.getLaenge(); j++) {
+				if (originalLab.getChar(i, j)=='m'){
+					step++;
+				}
+			}
+		}
+	return step;
+	}
+	
 	public void markieren(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
+		setEndTime(System.currentTimeMillis());
 		originalLab.setChar(x, y, 'm');
 		//originalLab.zeichnen();
 		// currentLabyrinth[y][x]='m';
@@ -151,22 +165,19 @@ public class AStar extends Algorithmus {
 			}
 		}
 	}
-//	public void demarkieren(int x, int y, Labyrinth originalLab){
-//		increaseStepCounter();
-//		originalLab.setChar(x, y, 'x');
-//		originalLab.zeichnen();
-//		// currentLabyrinth[y][x]='x';
-//	}
+	
+	public void markierenFertig(int x, int y, Labyrinth originalLab){
+		originalLab.setChar(x, y, 'm');
+	}
+
 	public void markierenOffen(int x, int y, Labyrinth originalLab){
 		originalLab.setChar(x, y, 'o');
-		//originalLab.zeichnen();
-		// currentLabyrinth[y][x]='x';
 	}
 	public void markierenGeschlossen(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
+		setEndTime(System.currentTimeMillis());
 		originalLab.setChar(x, y, 'g');
-		//originalLab.zeichnen();
-		// currentLabyrinth[y][x]='x';
+
 		if (stepByStep){
 			synchronized(this){
 				originalLab.setChar(x, y, 'g');
@@ -205,9 +216,9 @@ public class AStar extends Algorithmus {
 			r2 = new MyRunnableTwo();
 			t2 = new Thread(r2);
 			t2.start();
-			long waitMillis = 1000; // 5 Sekunden
+			long waitMillis = 10; // 5 Sekunden
 			try {
-				t1.join(10);
+				//t1.join(10);
 				t2.join(waitMillis);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

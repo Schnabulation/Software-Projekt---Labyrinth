@@ -8,6 +8,15 @@ public abstract class Algorithmus implements StepByStep{
 	private long startTime;
 	private long endTime;
 	private boolean ende = false;
+	private int stepFinalWay;
+
+	public int getStepFinalWay() {
+		return stepFinalWay;
+	}
+
+	public void setStepFinalWay(int stepFinalWay) {
+		this.stepFinalWay = stepFinalWay;
+	}
 
 	public boolean isEnde() {
 		return ende;

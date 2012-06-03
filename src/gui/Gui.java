@@ -220,7 +220,7 @@ public class Gui {
 		neuerVergleich.addActionListener(new neuerVergleichAction());
 		rightFirstPanel.add(neuerVergleich,BorderLayout.CENTER);
 		
-		abgelaufeneZeit = new JLabel("<html>Abgelaufene Zeit (in ms):<br>" +
+		abgelaufeneZeit = new JLabel("<html>Länge Lösungsweg: <br>" +
 				"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
 		rightSecondPanel.add(abgelaufeneZeit,BorderLayout.NORTH);
 		
@@ -278,7 +278,7 @@ public class Gui {
 	}
 	
 	public void updateStatistics(int anzSchritteAlg1, int anzSchritteAlg2, long anzMillisAlg1, long anzMillisAlg2) {
-		abgelaufeneZeit.setText("<html>Abgelaufene Zeit (in ms): <br>" +
+		abgelaufeneZeit.setText("<html>Länge Lösungsweg: <br>" +
 		"Alg. 1: " + anzMillisAlg1 + "<br>Alg. 2: " + anzMillisAlg2 + "<br>Differenz: " + Math.abs(anzMillisAlg1 - anzMillisAlg2) + "</html>");
 
 		anzahlSchritte.setText("<html>Anzahl Schritte:<br>" +
@@ -286,7 +286,7 @@ public class Gui {
 	}
 	
 	public void resetStatistics() {
-		abgelaufeneZeit.setText("<html>Abgelaufene Zeit (in ms):<br>" +
+		abgelaufeneZeit.setText("<html>Länge Lösungsweg: <br>" +
 		"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
 		
 		anzahlSchritte.setText("<html>Anzahl Schritte:<br>" +
