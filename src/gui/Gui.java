@@ -311,6 +311,9 @@ public class Gui {
 	
 	public void setEnable(boolean b) {
 		window.setEnabled(b);
+		if (b) {
+			window.toFront();
+		}
 	}
 	
 	private class neuerVergleichAction implements ActionListener {
