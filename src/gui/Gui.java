@@ -16,8 +16,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JSlider;
@@ -28,9 +26,6 @@ import labyrinth.Labyrinth;
 
 public class Gui {
 	private JFrame window;
-	private JMenuBar menu;
-	private JMenu file;
-	private JMenu info;
 	private Container contentPane;
 	private JPanel mainPanel;
 	private GridBagConstraints con_x0_y0;
@@ -59,7 +54,6 @@ public class Gui {
 		this.handler = handler;
 		
 		createFrame();
-		createMenu();
 		createMainContent();
 		createRightColumn();
 		sizePositionVisibility();
@@ -264,17 +258,6 @@ public class Gui {
 		
 		rightColumnPanel.add(topAlignPanel,BorderLayout.NORTH);
 		
-	}
-	
-	public void createMenu() {
-		menu = new JMenuBar();
-		file = new JMenu("Datei");
-		info = new JMenu("?");
-		menu.add(file);
-		menu.add(info);
-
-		window.setJMenuBar(menu);
-
 	}
 	
 	public void updateStatistics(int anzSchritteAlg1, int anzSchritteAlg2, long anzMillisAlg1, long anzMillisAlg2) {
