@@ -67,8 +67,12 @@ public class Handler {
 		settings.changeVisibility(true);
 	}
 	
-	public void resetGuiStatistics() {
-		gui.resetStatistics();
+	public void resetGuiStatistics(boolean b) {
+		gui.resetStatistics(b);
+	}
+	
+	public void setGuiAlgNames() {
+		gui.updateAlgName(this.getAlg1().toString(), this.getAlg2().toString());
 	}
 
 	public void start() {

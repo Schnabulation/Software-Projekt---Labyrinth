@@ -258,7 +258,8 @@ public class Settings {
 				handler.setAlg1((Algorithmus) alg1Model.getSelectedItem());
 				handler.setAlg2((Algorithmus) alg2Model.getSelectedItem());
 				handler.setLabyrinth((Labyrinth) labyrinthModel.getSelectedItem());
-				handler.resetGuiStatistics();
+				handler.setGuiAlgNames();
+				handler.resetGuiStatistics(false);
 				handler.guiSetEnable(true);
 			}
 		}

@@ -44,11 +44,13 @@ public class Gui {
 	private JPanel rightSecondPanel;
 	private JPanel rightThirdPanel;
 	private JPanel rightForthPanel;
+	private JPanel rightSixthPanel;
 	private Handler handler;
 	private JLabel abgelaufeneZeit;
 	private JLabel anzahlSchritte;
 	private JPanel rightFifthPanel;
 	private JSlider speed;
+	private JLabel algorithmenName;
 	
 	public Gui(Handler handler) {
 		this.handler = handler;
@@ -160,29 +162,36 @@ public class Gui {
 		con_x0_y1_special.gridy = 1;
 		con_x0_y1_special.gridx = 0;
 //		con_x0_y1_special.weighty = 0;
-		con_x0_y1_special.insets = new Insets(30,0,0,0);
+		con_x0_y1_special.insets = new Insets(20,0,0,0);
 		con_x0_y1_special.anchor = GridBagConstraints.PAGE_START;
 		
 		GridBagConstraints con_x0_y2_special = new GridBagConstraints();
 		con_x0_y2_special.gridy = 2;
 		con_x0_y2_special.gridx = 0;
 //		con_x0_y2_special.weighty = 0;
-		con_x0_y2_special.insets = new Insets(30,0,0,0);
+		con_x0_y2_special.insets = new Insets(20,0,0,0);
 		con_x0_y2_special.anchor = GridBagConstraints.PAGE_START;
 		
 		GridBagConstraints con_x0_y3_special = new GridBagConstraints();
 		con_x0_y3_special.gridy = 3;
 		con_x0_y3_special.gridx = 0;
 //		con_x0_y3_special.weighty = 0.1;
-		con_x0_y3_special.insets = new Insets(150,0,0,0);
+		con_x0_y3_special.insets = new Insets(20,0,0,0);
 		con_x0_y3_special.anchor = GridBagConstraints.PAGE_START;
 		
 		GridBagConstraints con_x0_y4_special = new GridBagConstraints();
 		con_x0_y4_special.gridy = 4;
 		con_x0_y4_special.gridx = 0;
 //		con_x0_y4_special.weighty = 0.1;
-		con_x0_y4_special.insets = new Insets(20,0,0,0);
+		con_x0_y4_special.insets = new Insets(50,0,0,0);
 		con_x0_y4_special.anchor = GridBagConstraints.PAGE_START;
+		
+		GridBagConstraints con_x0_y5_special = new GridBagConstraints();
+		con_x0_y5_special.gridy = 5;
+		con_x0_y5_special.gridx = 0;
+//		con_x0_y5_special.weighty = 0.1;
+		con_x0_y5_special.insets = new Insets(20,0,0,0);
+		con_x0_y5_special.anchor = GridBagConstraints.PAGE_START;
 		
 		
 		rightFirstPanel = new JPanel();
@@ -191,36 +200,50 @@ public class Gui {
 		rightFirstPanel.setLayout(new BorderLayout());
 		
 		rightSecondPanel = new JPanel();
-//		rightSecondPanel.setBackground(Color.red);
-		rightSecondPanel.setPreferredSize(new Dimension(250, 70));
+		rightSecondPanel.setPreferredSize(new Dimension(250, 80));
 		rightSecondPanel.setLayout(new BorderLayout());
 		
 		rightThirdPanel = new JPanel();
-//		rightThirdPanel.setBackground(Color.blue);
-		rightThirdPanel.setPreferredSize(new Dimension(250, 70));
+//		rightThirdPanel.setBackground(Color.red);
+		rightThirdPanel.setPreferredSize(new Dimension(250, 80));
 		rightThirdPanel.setLayout(new BorderLayout());
 		
 		rightForthPanel = new JPanel();
-//		rightForthPanel.setBackground(Color.green);
+//		rightForthPanel.setBackground(Color.blue);
 		rightForthPanel.setPreferredSize(new Dimension(250, 80));
 		rightForthPanel.setLayout(new BorderLayout());
 		
 		rightFifthPanel = new JPanel();
-//		rightFifthPanel.setBackground(Color.white);
-		rightFifthPanel.setPreferredSize(new Dimension(250, 30));
+//		rightFifthPanel.setBackground(Color.green);
+		rightFifthPanel.setPreferredSize(new Dimension(250, 80));
 		rightFifthPanel.setLayout(new BorderLayout());
+		
+		rightSixthPanel = new JPanel();
+//		rightSixthPanel.setBackground(Color.white);
+		rightSixthPanel.setPreferredSize(new Dimension(250, 30));
+		rightSixthPanel.setLayout(new BorderLayout());
 		
 		JButton neuerVergleich = new JButton("Neuer Vergleich");
 		neuerVergleich.addActionListener(new neuerVergleichAction());
 		rightFirstPanel.add(neuerVergleich,BorderLayout.CENTER);
 		
-		abgelaufeneZeit = new JLabel("<html>Länge Lösungsweg: <br>" +
-				"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
-		rightSecondPanel.add(abgelaufeneZeit,BorderLayout.NORTH);
+		algorithmenName = new JLabel("<html>Alg. 1:<br>Alg. 2:</html");
+		TitledBorder rightSecondPanelBorder;
+		rightSecondPanelBorder = BorderFactory.createTitledBorder("Algorithmen");
+		rightSecondPanel.setBorder(rightSecondPanelBorder);
+		rightSecondPanel.add(algorithmenName,BorderLayout.NORTH);
 		
-		anzahlSchritte = new JLabel("<html>Anzahl Schritte:<br>" +
-		"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
-		rightThirdPanel.add(anzahlSchritte,BorderLayout.NORTH);
+		abgelaufeneZeit = new JLabel("<html>Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
+		TitledBorder rightThirdPanelBorder;
+		rightThirdPanelBorder = BorderFactory.createTitledBorder("Länge des Lösungswegs");
+		rightThirdPanel.setBorder(rightThirdPanelBorder);
+		rightThirdPanel.add(abgelaufeneZeit,BorderLayout.NORTH);
+		
+		anzahlSchritte = new JLabel("<html>Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
+		TitledBorder rightForthPanelBorder;
+		rightForthPanelBorder = BorderFactory.createTitledBorder("Anzahl Schritte");
+		rightForthPanel.setBorder(rightForthPanelBorder);
+		rightForthPanel.add(anzahlSchritte,BorderLayout.NORTH);
 		
 		speed = new JSlider(0, 1000, 100); 
 		speed.setMinorTickSpacing(100);
@@ -238,14 +261,14 @@ public class Gui {
 		start.setPreferredSize(new Dimension(83, 30));
 		start.addActionListener(new startButtonAction());
 		
-		TitledBorder rightForthPanelBorder;
-		rightForthPanelBorder = BorderFactory.createTitledBorder("Speed (Wartezeit in ms)");
-		rightForthPanel.setBorder(rightForthPanelBorder);
-		rightForthPanel.add(speed,BorderLayout.NORTH);
+		TitledBorder rightFifthPanelBorder;
+		rightFifthPanelBorder = BorderFactory.createTitledBorder("Speed (Wartezeit in ms)");
+		rightFifthPanel.setBorder(rightFifthPanelBorder);
+		rightFifthPanel.add(speed,BorderLayout.NORTH);
 		
-		rightFifthPanel.add(loeschen,BorderLayout.WEST);
-		rightFifthPanel.add(nextStep,BorderLayout.CENTER);
-		rightFifthPanel.add(start,BorderLayout.EAST);
+		rightSixthPanel.add(loeschen,BorderLayout.WEST);
+		rightSixthPanel.add(nextStep,BorderLayout.CENTER);
+		rightSixthPanel.add(start,BorderLayout.EAST);
 		
 		JPanel topAlignPanel = new JPanel();
 		topAlignPanel.setLayout(new GridBagLayout());
@@ -255,25 +278,27 @@ public class Gui {
 		topAlignPanel.add(rightThirdPanel,con_x0_y2_special);
 		topAlignPanel.add(rightForthPanel,con_x0_y3_special);
 		topAlignPanel.add(rightFifthPanel,con_x0_y4_special);
+		topAlignPanel.add(rightSixthPanel,con_x0_y5_special);
 		
 		rightColumnPanel.add(topAlignPanel,BorderLayout.NORTH);
 		
 	}
 	
 	public void updateStatistics(int anzSchritteAlg1, int anzSchritteAlg2, long anzMillisAlg1, long anzMillisAlg2) {
-		abgelaufeneZeit.setText("<html>Länge Lösungsweg: <br>" +
-		"Alg. 1: " + anzMillisAlg1 + "<br>Alg. 2: " + anzMillisAlg2 + "<br>Differenz: " + Math.abs(anzMillisAlg1 - anzMillisAlg2) + "</html>");
-
-		anzahlSchritte.setText("<html>Anzahl Schritte:<br>" +
-		"Alg. 1: " + anzSchritteAlg1 + "<br>Alg. 2: " + anzSchritteAlg2 + "<br>Differenz: " + Math.abs(anzSchritteAlg1 - anzSchritteAlg2) + "</html>");
+		abgelaufeneZeit.setText("<html>Alg. 1: " + anzMillisAlg1 + "<br>Alg. 2: " + anzMillisAlg2 + "<br>Differenz: " + Math.abs(anzMillisAlg1 - anzMillisAlg2) + "</html>");
+		anzahlSchritte.setText("<html>Alg. 1: " + anzSchritteAlg1 + "<br>Alg. 2: " + anzSchritteAlg2 + "<br>Differenz: " + Math.abs(anzSchritteAlg1 - anzSchritteAlg2) + "</html>");
 	}
 	
-	public void resetStatistics() {
-		abgelaufeneZeit.setText("<html>Länge Lösungsweg: <br>" +
-		"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
-		
-		anzahlSchritte.setText("<html>Anzahl Schritte:<br>" +
-		"Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
+	public void updateAlgName(String alg1, String alg2) {
+		algorithmenName.setText("<html>Alg. 1: " + alg1 + "<br>Alg. 2: " + alg2 + "</html>");
+	}
+	
+	public void resetStatistics(boolean b) {
+		if (b) {
+			algorithmenName.setText("<html>Alg. 1:<br>Alg. 2:</html");
+		}
+		abgelaufeneZeit.setText("<html>Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
+		anzahlSchritte.setText("<html>Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
 	}
 	
 	public void labyrinth1Zeichnen(Labyrinth labyrinth) {
@@ -336,7 +361,7 @@ public class Gui {
 		public void actionPerformed(ActionEvent e) {
 			topLeftPanel.removeAll();
 			bottomLeftPanel.removeAll();
-			resetStatistics();
+			resetStatistics(true);
 			window.repaint();
 			handler.resetHandler();
 		}
