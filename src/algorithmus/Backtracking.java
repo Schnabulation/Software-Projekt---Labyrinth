@@ -35,13 +35,25 @@ public class Backtracking extends Algorithmus{
 	/* ---------------------------------------------
 	 * Methoden
 	 * --------------------------------------------- */	
-	
+
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: solveLab
+	 *  
+	 * Author: Reto Huber
+	 * 
+	 * solveLab wird vom Handler aufgerufen um das Labyrinth sofort lösen zu lassen. Es wird also 
+	 * als Rückgabewert das gelöste Labyrinth erwartet. Zuerst werden die für die Statistik benötigten
+	 * Variablen für Zeit und Schritte gesetzt, dann das Lösen an sich gestartet und am Schluss wieder
+	 * die Statistik variablen angepasst und das gelöste Labyrinth zurückgegeben.
+	 * Auch der StepByStep Modus greifft auf diese Methode zu.
+	 * --------------------------------------------------------------------------------------------- */
 	public Labyrinth solveLab(Labyrinth originalLab) {
 		setEnde(false);
 		setStartTime(System.currentTimeMillis());
 		setStepCounter(0);
 		markieren(originalLab.getStart()[0], originalLab.getStart()[1],originalLab);
 		
+		//hier wird die Methode aufgerufen die den eigentlichen Algorithmus enthält.
 		rekursivLab(originalLab, originalLab.getStart()[0], originalLab.getStart()[1]);
 		
 		setEndTime(System.currentTimeMillis());
@@ -50,6 +62,16 @@ public class Backtracking extends Algorithmus{
 		return originalLab;
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: rekursivLab
+	 *  
+	 * Author: Reto Huber
+	 * 
+	 * rekursivLab ist für die eigentliche Arbeit des Algorithmus zuständig. Sie wird rekursiv
+	 * aufgerufen und löst dadurch das Labyrinth mit dem Backtracking Algorithmus.
+	 * Die Methode wird rekursiv aufgerufen, bis das Ziel gefunden wurde.
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
 	public boolean rekursivLab(Labyrinth originalLab, int x, int y){
 		int schritt = -1;
 		int n = originalLab.getBreite();
@@ -69,11 +91,12 @@ public class Backtracking extends Algorithmus{
 				markieren(neuX,neuY,originalLab);
  
 				if (!istZiel(neuX, neuY, originalLab)) {
-					// rekursiver Aufruf von FindeLoesung
+					// rekursiver Aufruf von rekursivLab
 					if (rekursivLab(originalLab, neuX, neuY)) {
 						// Lösung gefunden	
 						return true;
 					} else {
+						//Sackgasse und demarkieren
 						demarkieren(neuX,neuY,originalLab);					
 					}
 				} else return true; 		
@@ -83,7 +106,15 @@ public class Backtracking extends Algorithmus{
 		}
 		return false;
 	}
-	
+
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: istZiel
+	 *  
+	 * Author: Reto Huber
+	 * 
+	 * Diese Hilfsmethode prüft, ob der Algorithmus bereits am Ziel angekommen ist.
+	 * --------------------------------------------------------------------------------------------- */
+ 	
 	 private static boolean istZiel(int neuX, int neuY, Labyrinth originalLab) { 
 		 if(neuX==originalLab.getEnde()[0] && neuY==originalLab.getEnde()[1]){
 			 return true;
@@ -91,6 +122,15 @@ public class Backtracking extends Algorithmus{
 		 return false;
 	}
 	 
+		/* ---------------------------------------------------------------------------------------------
+		 * Methode: zielWeg
+		 *  
+		 * Author: Reto Huber
+		 * 
+		 * zielWeg wird am Schluss aufgerufen, nachdem der Backtracking Algorithmus das Ziel gefunden hat
+		 * und gibt die Länge des gefundenen Weges zurück.
+		 * --------------------------------------------------------------------------------------------- */
+	 	
 	 public int zielWeg(Labyrinth originalLab) {
 		 int step = 0;
 		 for (int i = 0; i < originalLab.getBreite(); i++) {
@@ -103,12 +143,27 @@ public class Backtracking extends Algorithmus{
 		 
 	return step;
 	}
+	 
+		/* ---------------------------------------------------------------------------------------------
+		 * Methode: markieren
+		 *  
+		 * Author: Reto Huber
+		 * 
+		 * Markiert einen Punkt im Labyrinth "grün". Also als Punkt für den finalen Weg.
+		 * --------------------------------------------------------------------------------------------- */
+	 	 
 	
 	public void markieren(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
 		setEndTime(System.currentTimeMillis());
 		originalLab.setChar(x, y, 'm');
 
+		/*
+		 * dieser Abschnitt ist für den StepByStep Modus. Wenn dieser aktiv ist, 
+		 * wird hier der zweite Thread aktieviert, so dass es eine Pause gibt und
+		 * es erst beim nächsten Klick auf den "NextStep"-Button, oder wenn die Wartezeit
+		 * abgelaufen ist, weiter geht.
+		 */
 		if (stepByStep){
 			synchronized(this){
 				originalLab.setChar(x, y, 'm');
@@ -122,11 +177,28 @@ public class Backtracking extends Algorithmus{
 			}
 		}
 	}
+	
+
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: demarkieren
+	 *  
+	 * Author: Reto Huber
+	 * 
+	 * Markiert einen Punkt im Labyrinth "rot". Also nicht als Punkt für den finalen Weg, aber
+	 * als Punkt der besucht wurde und in einer Sackgasse endete.
+	 * --------------------------------------------------------------------------------------------- */
+ 	 
 	public void demarkieren(int x, int y, Labyrinth originalLab){
 		increaseStepCounter();
 		setEndTime(System.currentTimeMillis());
 		originalLab.setChar(x, y, 'x');
-
+		
+		/*
+		 * dieser Abschnitt ist für den StepByStep Modus. Wenn dieser aktiv ist, 
+		 * wird hier der zweite Thread aktieviert, so dass es eine Pause gibt und
+		 * es erst beim nächsten Klick auf den "NextStep"-Button, oder wenn die Wartezeit
+		 * abgelaufen ist, weiter geht.
+		 */
 		if (stepByStep){
 			synchronized(this){
 				originalLab.setChar(x, y, 'x');
@@ -141,7 +213,22 @@ public class Backtracking extends Algorithmus{
 		}
 	}
 
-	@Override
+	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: startStepByStep
+	 *  
+	 * Author: Reto Huber
+	 * 
+	 * Hier wird alles für den StepByStep Modus vorbereitet. Auch der automatische Schritt
+	 * für Schritt Modus (mit Angabe von Geschwindigkeit) wird damit gestartet.
+	 * Unser Schritt für Schritt Modus haben wir so eingerichtet, dass die normale solveLab
+	 * Methode aufgerufen wird. Dass nicht das ganze Labyrinth sofort gelöst wird, regeln zwei
+	 * Threads die sich gegenseitig durch wait und notify abwechseln. Thread macht einen Schritt 
+	 * im Labyrinth weiter, Thread 2 macht nichts, ausser zu warten und somit den anderen zu unterbrechen.
+	 * 
+	 * In dieser Methode wird der Thread 1 eröffnet und gestartet.
+	 * --------------------------------------------------------------------------------------------- */
+ 	
 	public void startStepByStep(Labyrinth lab) {
 		// TODO Auto-generated method stub
 		this.stepByStep = true;
@@ -152,7 +239,17 @@ public class Backtracking extends Algorithmus{
 		t1.start();
 	}
 
-	@Override
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: nextStep
+	 *  
+	 * Author: Reto Huber
+	 * 
+	 * In der nextStep Methode wird nun bei jedem Aufruf ein neuer Thread2 erstellt, welcher dem wartenden
+	 * Thread1 das ok gibt um einen Schritt zu machen und dann wieder beendet wird, sobald Thread 1 wieder
+	 * im wartenden Zustand ist.
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
+ 	
 	public Labyrinth nextStep() {
 		if (!isEnde()){
 			r2 = new MyRunnableTwo();
@@ -177,9 +274,20 @@ public class Backtracking extends Algorithmus{
 			} else{return stepByStepLab;}
 	}
 
+		
 public class MyRunnableOne implements Runnable {
 
-	@Override
+	/* ---------------------------------------------------------------------------------------------
+	 * MyRunnableOne: Beschreibung der Klasse
+	 * ---------------------------------------------
+	 * 
+	 * Diese Klasse ist für den Thread1 des StepByStep Modus. Sie startet die Methode solveLab
+	 * und wartet dann nach jedem markieren oder demarkieren (also nach jedem Schritt) auf ein
+	 * neues notify, welche sie von dem Thread2 bekommt, welcher in der nextStep Methode gestartet
+	 * wird.
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
+
 	public void run() {
 		synchronized (lock) {
 			try {
@@ -189,6 +297,7 @@ public class MyRunnableOne implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//starten des Lösungsalgorithmus
 			solveLab(stepByStepLab);
 		}
 	}
@@ -196,7 +305,16 @@ public class MyRunnableOne implements Runnable {
 
 public class MyRunnableTwo implements Runnable {
 
-	@Override
+	/* ---------------------------------------------------------------------------------------------
+	 * MyRunnableTwo: Beschreibung der Klasse
+	 * ---------------------------------------------
+	 * 
+	 * Diese Klasse ist für den Thread2 des StepByStep Modus. Sie dient lediglich dazu, den 
+	 * Thread1 einen Schritt weiter zu bringen, indem sie ihn durch notify aus dem Wartezustand
+	 * bringt.
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
+
 	public void run() {
 		synchronized (lock) {
 			for (int i2 = 0; i2 < 1; i2++) {
