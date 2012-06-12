@@ -1,7 +1,21 @@
 package algorithmus;
 
+/* ---------------------------------------------------------------------------------------------
+ * AStarKnoten: Beschreibung der Klasse
+ * ---------------------------------------------
+ * 
+ * Diese Klasse wird vom AStar Algorithmus genutzt. Sie dient dazu einen Punkt, bzw. Knoten zu
+ * speichern. Damit wird gewährleistet dass jeder abgespeicherte Punkt die nötigen Variablen und
+ * Methoden hat.
+ * 
+ * --------------------------------------------------------------------------------------------- */
+
+
 public class AStarKnoten {
 
+	/* ---------------------------------------------
+	 * Variablen
+	 * --------------------------------------------- */
 	private AStarKnoten parent;
 	private int x;
 	private int y;
@@ -9,13 +23,20 @@ public class AStarKnoten {
 	private float g; //zurückgelegter Weg vom Start
 	private float f; // kosten gesammt
 	
-//	public AStarKnoten(AStarKnoten parent, int x, int y, float h){
-//		this.parent = parent;
-//		this.x = x;
-//		this.y = y;
-//		this.h = h;
-//	}
+	/* ---------------------------------------------
+	 * Methoden
+	 * --------------------------------------------- */	
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: AStarKnoten (Konstruktor)
+	 *  
+	 * Author: Reto Huber
+	 * 
+	 * dem Konstruktor wird der parent Knoten übregeben, die Koordinaten, den Abstand h zum Ziel und
+	 * ein boolean g1, welches true ist, wenn der bisherige Weg mitbeachtet werden soll (originaler A*).
+	 * Je nachdem wie dieses Flag gesetzt ist, wird f unterschiedlich berechnet.
+	 * 
+	 * --------------------------------------------------------------------------------------------- */	
 	public AStarKnoten(AStarKnoten parent, int x, int y, float h, boolean g1){
 		this.parent = parent;
 		this.x = x;
@@ -28,10 +49,8 @@ public class AStarKnoten {
 				this.f = g+h;
 			} else{
 				this.g = 0;
-			}
-			
+			}	
 		}
-		
 	}
 
 	public float getF() {
@@ -81,7 +100,5 @@ public class AStarKnoten {
 	public void setH(float h) {
 		this.h = h;
 	}
-	
-	
 	
 }
