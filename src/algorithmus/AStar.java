@@ -216,16 +216,15 @@ public class AStar extends Algorithmus {
 			r2 = new MyRunnableTwo();
 			t2 = new Thread(r2);
 			t2.start();
-			long waitMillis = 10; // 5 Sekunden
+			long waitMillis = 500; // 0.5 Sekunden
 			try {
-				//t1.join(10);
 				t2.join(waitMillis);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			if (t1.isAlive()){
 				if (t2.isAlive() || isEnde()) {
-				   System.out.println("Fertig, oder 1 Sek abgelaufen.");
+				   System.out.println("Fertig, oder 0.5 Sek abgelaufen.");
 				   return null;// Die 5 Sekunden sind um; der Thread läuft noch
 				} else {
 				   return stepByStepLab;// Thread ist beendet
