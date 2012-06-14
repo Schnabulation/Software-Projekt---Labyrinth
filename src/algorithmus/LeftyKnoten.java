@@ -1,12 +1,11 @@
 package algorithmus;
 
 /* ---------------------------------------------------------------------------------------------
- * AStarKnoten: Beschreibung der Klasse
+ * LeftyKnoten: Beschreibung der Klasse
  * ---------------------------------------------
  * 
- * Diese Klasse wird vom AStar Algorithmus genutzt. Sie dient dazu einen Punkt, bzw. Knoten zu
- * speichern. Damit wird gewährleistet dass jeder abgespeicherte Punkt die nötigen Variablen und
- * Methoden hat.
+ * Diese Klasse wird vom Lefty Algorithmus genutzt. Sie dient dazu beim demarkieren zu wissen, woher
+ * man ursprünglich zu diesem Punkt gekommen ist, um sein Vorgänger Knoten als nächstes zu analysieren.
  * 
  * --------------------------------------------------------------------------------------------- */
 
@@ -25,13 +24,12 @@ public class LeftyKnoten {
 	 * --------------------------------------------- */	
 	
 	/* ---------------------------------------------------------------------------------------------
-	 * Methode: AStarKnoten (Konstruktor)
+	 * Methode: LeftyKnoten (Konstruktor)
 	 *  
 	 * Author: Reto Huber
 	 * 
-	 * dem Konstruktor wird der parent Knoten übregeben, die Koordinaten, den Abstand h zum Ziel und
-	 * ein boolean g1, welches true ist, wenn der bisherige Weg mitbeachtet werden soll (originaler A*).
-	 * Je nachdem wie dieses Flag gesetzt ist, wird f unterschiedlich berechnet.
+	 * dem Konstruktor werden die Koordinaten und die Richtung woher man auf diesen Punkt gekommen ist
+	 * übergeben.
 	 * 
 	 * --------------------------------------------------------------------------------------------- */	
 	public LeftyKnoten(int x, int y, int richtung){
@@ -63,6 +61,4 @@ public class LeftyKnoten {
 	public void setRichtung(int richtung) {
 		this.richtung = richtung;
 	}
-
-	
 }

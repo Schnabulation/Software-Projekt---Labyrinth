@@ -6,7 +6,7 @@ import java.util.Vector;
 import labyrinth.Labyrinth;
 
 /* ---------------------------------------------------------------------------------------------
- * Backtracking: Beschreibung der Klasse
+ * Lefty: Beschreibung der Klasse
  * ---------------------------------------------
  * 
  * Die Klasse Lefty implementiert einen Labyrinth Lösungsalgorithmus, der immer der Wand entlang
