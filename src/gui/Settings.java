@@ -27,6 +27,7 @@ import labyrinth.LabyrinthGenerator;
 import algorithmus.AStar;
 import algorithmus.Algorithmus;
 import algorithmus.Backtracking;
+import algorithmus.Lefty;
 
 public class Settings {
 
@@ -57,6 +58,7 @@ public class Settings {
 	private Algorithmus alg3;
 	private Algorithmus alg4;
 	private Algorithmus alg5;
+	private Algorithmus alg6;
 	private Handler handler;
 	
 	public Settings(Handler handler) {
@@ -78,11 +80,14 @@ public class Settings {
 		lab4 = LabyrinthGenerator.loadLab(4);
 		lab5 = LabyrinthGenerator.loadLab(5);
 		
+		//alg1 = new Backtracking();
 		alg1 = new Backtracking();
 		alg2 = new AStar("Manhattan",true);
 		alg3 = new AStar("Manhattan",false);
 		alg4 = new AStar("Luftlinie",true);
 		alg5 = new AStar("Luftlinie",false);
+		alg6 = new Lefty();
+		
 		
 	}
 
@@ -218,12 +223,14 @@ public class Settings {
 		alg1Model.addElement(alg3);
 		alg1Model.addElement(alg4);
 		alg1Model.addElement(alg5);
+		alg1Model.addElement(alg6);
 		
 		alg2Model.addElement(alg1);
 		alg2Model.addElement(alg2);
 		alg2Model.addElement(alg3);
 		alg2Model.addElement(alg4);
 		alg2Model.addElement(alg5);
+		alg2Model.addElement(alg6);
 	}
 
 	
