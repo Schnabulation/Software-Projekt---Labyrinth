@@ -1,9 +1,9 @@
-package handler;
+package ch.zhaw.handler;
 
-import gui.Gui;
-import gui.Settings;
-import labyrinth.Labyrinth;
-import algorithmus.Algorithmus;
+import ch.zhaw.algorithmus.Algorithmus;
+import ch.zhaw.gui.Gui;
+import ch.zhaw.gui.Settings;
+import ch.zhaw.labyrinth.Labyrinth;
 
 /* ---------------------------------------------------------------------------------------------
  * Handler: Beschreibung der Klasse

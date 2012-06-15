@@ -1,4 +1,4 @@
-package algorithmus;
+package ch.zhaw.algorithmus;
 
 /* ---------------------------------------------------------------------------------------------
  * AStarKnoten: Beschreibung der Klasse

@@ -1,4 +1,4 @@
-package gui;
+package ch.zhaw.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,7 +6,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import labyrinth.Labyrinth;
+import ch.zhaw.labyrinth.Labyrinth;
+
 
 public class JLabyrinth extends JPanel {
 

@@ -1,6 +1,6 @@
-package algorithmus;
+package ch.zhaw.algorithmus;
 
-import labyrinth.Labyrinth;
+import ch.zhaw.labyrinth.Labyrinth;
 
 /* ---------------------------------------------------------------------------------------------
  * Backtracking: Beschreibung der Klasse

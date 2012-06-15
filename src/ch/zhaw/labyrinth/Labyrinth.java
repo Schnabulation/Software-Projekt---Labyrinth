@@ -1,4 +1,4 @@
-package labyrinth;
+package ch.zhaw.labyrinth;
 
 public class Labyrinth implements Cloneable {
 

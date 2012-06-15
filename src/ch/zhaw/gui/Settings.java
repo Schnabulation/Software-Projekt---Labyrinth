@@ -1,6 +1,5 @@
-package gui;
+package ch.zhaw.gui;
 
-import handler.Handler;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -11,8 +10,6 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -22,12 +19,14 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import labyrinth.Labyrinth;
-import labyrinth.LabyrinthGenerator;
-import algorithmus.AStar;
-import algorithmus.Algorithmus;
-import algorithmus.Backtracking;
-import algorithmus.Lefty;
+import ch.zhaw.algorithmus.AStar;
+import ch.zhaw.algorithmus.Algorithmus;
+import ch.zhaw.algorithmus.Backtracking;
+import ch.zhaw.algorithmus.Lefty;
+import ch.zhaw.handler.Handler;
+import ch.zhaw.labyrinth.Labyrinth;
+import ch.zhaw.labyrinth.LabyrinthGenerator;
+
 
 public class Settings {
 
@@ -102,8 +101,7 @@ public class Settings {
 		window.setLocation(dim.width / 2 - 200, dim.height / 2 - 150);
 		window.setVisible(false);
 		window.setResizable(false);
-		window.addWindowListener(new closeWindowAction());
-		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void createMainContent() {
@@ -270,51 +268,6 @@ public class Settings {
 				handler.guiSetEnable(true);
 			}
 		}
-	}
-	
-	private class closeWindowAction implements WindowListener {
-
-		@Override
-		public void windowActivated(WindowEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void windowClosed(WindowEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void windowClosing(WindowEvent e) {
-			new losButtonAction().actionPerformed(null);
-		}
-
-		@Override
-		public void windowDeactivated(WindowEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void windowDeiconified(WindowEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void windowIconified(WindowEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void windowOpened(WindowEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-		
 	}
 
 }

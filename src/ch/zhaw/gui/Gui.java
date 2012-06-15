@@ -1,6 +1,5 @@
-package gui;
+package ch.zhaw.gui;
 
-import handler.Handler;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -22,7 +21,9 @@ import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import labyrinth.Labyrinth;
+import ch.zhaw.handler.Handler;
+import ch.zhaw.labyrinth.Labyrinth;
+
 
 public class Gui {
 	private JFrame window;

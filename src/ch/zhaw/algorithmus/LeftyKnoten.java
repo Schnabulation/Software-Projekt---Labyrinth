@@ -1,4 +1,4 @@
-package algorithmus;
+package ch.zhaw.algorithmus;
 
 /* ---------------------------------------------------------------------------------------------
  * LeftyKnoten: Beschreibung der Klasse

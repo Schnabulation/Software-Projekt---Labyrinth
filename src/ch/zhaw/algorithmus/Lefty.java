@@ -1,9 +1,10 @@
-package algorithmus;
+package ch.zhaw.algorithmus;
 
 import java.util.List;
 import java.util.Vector;
 
-import labyrinth.Labyrinth;
+import ch.zhaw.labyrinth.Labyrinth;
+
 
 /* ---------------------------------------------------------------------------------------------
  * Lefty: Beschreibung der Klasse
