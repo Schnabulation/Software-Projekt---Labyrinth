@@ -9,7 +9,9 @@ import ch.zhaw.labyrinth.Labyrinth;
  * Handler: Beschreibung der Klasse
  * ---------------------------------------------
  * 
- * TEXT!!!!!!!!!!!!!!!!!!!!!
+ * Die Handler-Klasse übernimmt den kompletten Ablauf des Programms. Sie ruft auch die
+ * grafische Oberfläche auf und beschäftigt sich mit dem kontrollierten Aufruf der
+ * entsprechenden Methoden und Labyrinthe.
  * --------------------------------------------------------------------------------------------- */
 
 public class Handler {
@@ -35,7 +37,8 @@ public class Handler {
 	 *  
 	 * Author: Steve Heller
 	 * 
-	 * TEXT!!!!!
+	 * Wird durch die Main-Methode aufgerufen.
+	 * Die Methode erstellt die grafischen Oberflächen und ruft diese auf.
 	 * --------------------------------------------------------------------------------------------- */
 	public Handler() {
 		settings = new Settings(this);
@@ -43,6 +46,14 @@ public class Handler {
 		gui.setEnable(false);
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: resetHandler
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Setzt die ganze Applikation auf zurück. Wird aufgerufen, wenn auf den "Löschen" Knopf
+	 * geklickt wird.
+	 * --------------------------------------------------------------------------------------------- */
 	public void resetHandler() {
 		labyrinth = null;
 		alg1 = null;
@@ -50,48 +61,126 @@ public class Handler {
 		settings = new Settings(this);
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: getLabyrinth
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Getter-Methode für die Variable labyrinth.
+	 * --------------------------------------------------------------------------------------------- */
 	public Labyrinth getLabyrinth() {
 		return labyrinth;
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: setLabyrinth
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Setter-Methode für die Variable labyrinth. Ausserdem wird dadurch das Labyrinth auf
+	 * dem Hauptfenster gezeichnet.
+	 * --------------------------------------------------------------------------------------------- */
 	public void setLabyrinth(Labyrinth labyrinth) {
 		this.labyrinth = labyrinth;
 		gui.labyrinth1Zeichnen(labyrinth);
 		gui.labyrinth2Zeichnen(labyrinth);
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: getAlg1
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Getter-Methode für Variable alg1.
+	 * --------------------------------------------------------------------------------------------- */
 	public Algorithmus getAlg1() {
 		return alg1;
 	}
-
+	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: setAlg1
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Setter-Methode für Variable alg1.
+	 * --------------------------------------------------------------------------------------------- */
 	public void setAlg1(Algorithmus alg1) {
 		this.alg1 = alg1;
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: getAlg2
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Getter-Methode für Variable alg2.
+	 * --------------------------------------------------------------------------------------------- */
 	public Algorithmus getAlg2() {
 		return alg2;
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: setAlg2
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Setter-Methode für Variable alg2.
+	 * --------------------------------------------------------------------------------------------- */
 	public void setAlg2(Algorithmus alg2) {
 		this.alg2 = alg2;
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: getGui
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Getter-Methode für Variable gui.
+	 * --------------------------------------------------------------------------------------------- */
 	public Gui getGui() {
 		return gui;
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: setGui
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Setter-Methode für Variable gui.
+	 * --------------------------------------------------------------------------------------------- */
 	public void setGui(Gui gui) {
 		this.gui = gui;
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: openSettings
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Hilfsmethode. Ruft die Methode changeVisibility auf dem Objekt settings auf.
+	 * --------------------------------------------------------------------------------------------- */
 	public void openSettings() {
 		settings.changeVisibility(true);
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: resetGuiStatistics
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Hilfsmethode. Ruft die Methode resetStatistics auf dem Objekt gui auf.
+	 * --------------------------------------------------------------------------------------------- */
 	public void resetGuiStatistics(boolean b) {
 		gui.resetStatistics(b);
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: setGuiAlgNames
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Hilfsmethode. Ruft die Methode updateAlgName auf dem Objekt gui auf.
+	 * --------------------------------------------------------------------------------------------- */
 	public void setGuiAlgNames() {
 		gui.updateAlgName(this.getAlg1().toString(), this.getAlg2().toString());
 	}
