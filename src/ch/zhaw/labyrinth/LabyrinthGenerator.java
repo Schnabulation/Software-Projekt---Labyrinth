@@ -1,8 +1,33 @@
 package ch.zhaw.labyrinth;
 
+/* ---------------------------------------------------------------------------------------------
+ * LabyrinthGenerator: Beschreibung der Klasse
+ * ---------------------------------------------
+ * 
+ * Der LabyrinthGenerator bietet eine statische Methode an, welche verschiedene Labyrinthe
+ * generiert. Diese Klasse ist also dazu da, die verschiedenen Labyrinthe zu generieren.
+ * --------------------------------------------------------------------------------------------- */
+
 public class LabyrinthGenerator {
+	
+	/* ---------------------------------------------
+	 * Variablen
+	 * --------------------------------------------- */
 
 	static Labyrinth labyrinth;
+	
+	/* ---------------------------------------------
+	 * Methoden
+	 * --------------------------------------------- */	
+	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: loadLab
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Diese statische Methode erwartet als Eingabe eine ID. Als return Wert wird ein Objekt vom
+	 * Typ Labyrinth zurückgeliefert.
+	 * --------------------------------------------------------------------------------------------- */
 
 	public static Labyrinth loadLab(int labID) {
 

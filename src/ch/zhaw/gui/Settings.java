@@ -27,9 +27,19 @@ import ch.zhaw.handler.Handler;
 import ch.zhaw.labyrinth.Labyrinth;
 import ch.zhaw.labyrinth.LabyrinthGenerator;
 
+/* ---------------------------------------------------------------------------------------------
+ * Settings: Beschreibung der Klasse
+ * ---------------------------------------------
+ * 
+ * Diese Klasse ist für die darstellung des "neuer Versuch" Fensters verantwortlich.
+ * --------------------------------------------------------------------------------------------- */
 
 public class Settings {
 
+	/* ---------------------------------------------
+	 * Variablen
+	 * --------------------------------------------- */
+	
 	private JFrame window;
 	private Container contentPane;
 	private JPanel mainPanel;
@@ -59,6 +69,19 @@ public class Settings {
 	private Algorithmus alg5;
 	private Algorithmus alg6;
 	private Handler handler;
+
+	/* ---------------------------------------------
+	 * Methoden
+	 * --------------------------------------------- */	
+	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: Settings (Konstruktor)
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Beim Aufruf wird dem Settings-Objekt das aktuelle Handler-Objekt übergeben. Somit kann das Gui
+	 * immer wieder Aktionen auf dem Handler vornehmen sowie ihm Daten übergeben
+	 * --------------------------------------------------------------------------------------------- */
 	
 	public Settings(Handler handler) {
 		this.handler = handler;
@@ -72,6 +95,13 @@ public class Settings {
 		fillDropdowns();
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: variabelnInitialisieren
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Initialisiert die Variabeln und erstellt die Algorithmen- und Labyrinthobjekte.
+	 * --------------------------------------------------------------------------------------------- */
 	public void variabelnInitialisieren() {
 		lab1 = LabyrinthGenerator.loadLab(1);
 		lab2 = LabyrinthGenerator.loadLab(2);
@@ -79,7 +109,6 @@ public class Settings {
 		lab4 = LabyrinthGenerator.loadLab(4);
 		lab5 = LabyrinthGenerator.loadLab(5);
 		
-		//alg1 = new Backtracking();
 		alg1 = new Backtracking();
 		alg2 = new AStar("Manhattan",true);
 		alg3 = new AStar("Manhattan",false);
@@ -90,11 +119,26 @@ public class Settings {
 		
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: createFrame
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Erstellt das Haupt-JFrame und organisiert dessen Eigenschaften.
+	 * --------------------------------------------------------------------------------------------- */
 	public void createFrame() {
 		window = new JFrame("Neuer Vergleich");
 		contentPane = window.getContentPane();
 	}
 
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: sizePositionVisibility
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Hilfsmethode, welches das Fenster zentral positioniert, die Grösse definiert und einige
+	 * weiter Einstellungen festlegt.
+	 * --------------------------------------------------------------------------------------------- */
 	public void sizePositionVisibility() {
 		window.setSize(400, 300);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -104,6 +148,13 @@ public class Settings {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: createMainContent
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Diese Methode generiert das Haupt JPanel und organisiert dessen Content im Hauptfenster.
+	 * --------------------------------------------------------------------------------------------- */
 	public void createMainContent() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
@@ -133,6 +184,13 @@ public class Settings {
 
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: createRightColumn
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Diese Methode erstellt den rechten Teil des Frames initial.
+	 * ---------------------------------------------------------------------------------------- */
 	public void createRightColumn() {
 		GridBagConstraints con_x0_y0_special = new GridBagConstraints();
 		con_x0_y0_special.gridy = 0;
@@ -208,6 +266,13 @@ public class Settings {
 		rightPanel.add(topAlignPanel,BorderLayout.NORTH);
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: fillDropdowns
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Lädt die Dropdowns.
+	 * ---------------------------------------------------------------------------------------- */
 	public void fillDropdowns() {
 		labyrinthModel.addElement(lab1);
 		labyrinthModel.addElement(lab2);
@@ -231,17 +296,39 @@ public class Settings {
 		alg2Model.addElement(alg6);
 	}
 
-	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: changeVisibility
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Diese public Methode stellt die private Methode setVisible öffentlich zur
+	 * Verfügung
+	 * ---------------------------------------------------------------------------------------- */
 	public void changeVisibility(boolean b) {
 		window.setVisible(b);
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: labyrinthZeichnen
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Zeichnet das übergebene Objekt vom Typ Labyrinth links im Fenster
+	 * ein.
+	 * ---------------------------------------------------------------------------------------- */
 	public void labyrinthZeichnen(Labyrinth labyrinth) {
 		leftPanel.removeAll();
 		leftPanel.add(new JLabyrinth(labyrinth, (labyrinth.getRastermass() / 3 * 2)));
 		window.validate();
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * labyrinthBoxAction: Beschreibung der Klasse
+	 * ---------------------------------------------
+	 * 
+	 * Diese Klasse definiert den ActionListener für das Labyrinth-Dropdown.
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
 	private class labyrinthBoxAction implements ActionListener {
 
 		@Override
@@ -251,6 +338,13 @@ public class Settings {
 		
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * losButtonAction: Beschreibung der Klasse
+	 * ---------------------------------------------
+	 * 
+	 * Diese Klasse definiert den ActionListener für den "Los" Button
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
 	private class losButtonAction implements ActionListener {
 
 		@Override

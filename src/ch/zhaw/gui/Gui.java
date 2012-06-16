@@ -24,8 +24,18 @@ import javax.swing.border.TitledBorder;
 import ch.zhaw.handler.Handler;
 import ch.zhaw.labyrinth.Labyrinth;
 
+/* ---------------------------------------------------------------------------------------------
+ * Gui: Beschreibung der Klasse
+ * ---------------------------------------------
+ * 
+ * Diese Klasse ist für das Hauptfenster verantwortlich. Aufgerufen wird sie vom Handler-Objekt.
+ * --------------------------------------------------------------------------------------------- */
 
 public class Gui {
+	
+	/* ---------------------------------------------
+	 * Variablen
+	 * --------------------------------------------- */
 	private JFrame window;
 	private Container contentPane;
 	private JPanel mainPanel;
@@ -53,6 +63,19 @@ public class Gui {
 	private JSlider speed;
 	private JLabel algorithmenName;
 	
+	/* ---------------------------------------------
+	 * Methoden
+	 * --------------------------------------------- */	
+	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: Gui (Konstruktor)
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Beim Aufruf wird dem Gui-Objekt das aktuelle Handler-Objekt übergeben. Somit kann das Gui
+	 * immer wieder Aktionen auf dem Handler vornehmen sowie ihm Daten übergeben.
+	 * --------------------------------------------------------------------------------------------- */
+	
 	public Gui(Handler handler) {
 		this.handler = handler;
 		
@@ -64,11 +87,28 @@ public class Gui {
 		handler.openSettings();
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: createFrame
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Erstellt das Haupt-JFrame und organisiert dessen Eigenschaften.
+	 * --------------------------------------------------------------------------------------------- */
+	
 	public void createFrame() {
 		window = new JFrame("Software-Projekt - Labyrinth");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentPane = window.getContentPane();
 	}
+	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: sizePositionVisibility
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Hilfsmethode, welches das Fenster zentral positioniert, die Grösse definiert und einige
+	 * weiter Einstellungen festlegt.
+	 * --------------------------------------------------------------------------------------------- */
 	
 	public void sizePositionVisibility() {
 		window.setSize(600, 600);
@@ -78,6 +118,13 @@ public class Gui {
 		window.setResizable(false);
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: createMainContent
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Diese Methode generiert das Haupt JPanel und organisiert dessen Content im Hauptfenster.
+	 * --------------------------------------------------------------------------------------------- */
 	public void createMainContent() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
@@ -151,6 +198,13 @@ public class Gui {
 		contentPane.add(BorderLayout.CENTER, mainPanel);
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: createRightColumn
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Diese Methode erstellt den rechten Teil des Frames initial.
+	 * ---------------------------------------------------------------------------------------- */
 	public void createRightColumn() {
 		GridBagConstraints con_x0_y0_special = new GridBagConstraints();
 		con_x0_y0_special.gridy = 0;
@@ -285,15 +339,41 @@ public class Gui {
 		
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: updateStatistics
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Wird verwendet um die Statistik upzudaten. Ausserdem beinhaltet die Methode
+	 * die Berechnung der Differenz in der Statistik.
+	 * ---------------------------------------------------------------------------------------- */
 	public void updateStatistics(int anzSchritteAlg1, int anzSchritteAlg2, long anzMillisAlg1, long anzMillisAlg2) {
 		abgelaufeneZeit.setText("<html>Alg. 1: " + anzMillisAlg1 + "<br>Alg. 2: " + anzMillisAlg2 + "<br>Differenz: " + Math.abs(anzMillisAlg1 - anzMillisAlg2) + "</html>");
 		anzahlSchritte.setText("<html>Alg. 1: " + anzSchritteAlg1 + "<br>Alg. 2: " + anzSchritteAlg2 + "<br>Differenz: " + Math.abs(anzSchritteAlg1 - anzSchritteAlg2) + "</html>");
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: updateAlgName
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Kann aufgerufen werden, um die Algorithmennamen in der rechten Spalte zu
+	 * aktualisieren.
+	 * ---------------------------------------------------------------------------------------- */
 	public void updateAlgName(String alg1, String alg2) {
 		algorithmenName.setText("<html>Alg. 1: " + alg1 + "<br>Alg. 2: " + alg2 + "</html>");
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: resetStatistics
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Diese Methode erwartet einen boolean Wert als Eingabe. Ist dieser Wert true
+	 * werden sowohl die Algorithmen-Namen, die abgelaufenen Schritte sowie die länge des
+	 * Lösungswegs gelöscht.
+	 * Bei Wert false werden die Algorithmen-Namen nicht gelöscht.
+	 * ---------------------------------------------------------------------------------------- */
 	public void resetStatistics(boolean b) {
 		if (b) {
 			algorithmenName.setText("<html>Alg. 1:<br>Alg. 2:</html");
@@ -302,22 +382,54 @@ public class Gui {
 		anzahlSchritte.setText("<html>Alg. 1:<br>Alg. 2:<br>Differenz:</html>");
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: labyrinth1Zeichnen
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Zeichnet das übergebene Objekt vom Typ Labyrinth oben links im Hauptfenster
+	 * ein.
+	 * ---------------------------------------------------------------------------------------- */
 	public void labyrinth1Zeichnen(Labyrinth labyrinth) {
 		topLeftPanel.removeAll();
 		topLeftPanel.add(new JLabyrinth(labyrinth, labyrinth.getRastermass()));
 		window.validate();
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: labyrinth2Zeichnen
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Zeichnet das übergebene Objekt vom Typ Labyrinth unten links im Hauptfenster
+	 * ein.
+	 * ---------------------------------------------------------------------------------------- */
 	public void labyrinth2Zeichnen(Labyrinth labyrinth) {
 		bottomLeftPanel.removeAll();
 		bottomLeftPanel.add(new JLabyrinth(labyrinth, labyrinth.getRastermass()));
 		window.validate();
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: getSpeed
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Getter-Methode, um den aktuellen Wert des Geschwindigkeitssliders zu erhalten.
+	 * ---------------------------------------------------------------------------------------- */
 	public int getSpeed() {
 		return speed.getValue();
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * Methode: setEnable
+	 *  
+	 * Author: Steve Heller
+	 * 
+	 * Diese Methode wird vom Handler aufgerufen. Bei Übergabe des Wertes true wird das
+	 * Hauptfenster aktiviert sowie in den Vordergrund gezogen.
+	 * Bei false wird nur das Fenster aktiviert.
+	 * ---------------------------------------------------------------------------------------- */
 	public void setEnable(boolean b) {
 		window.setEnabled(b);
 		if (b) {
@@ -325,6 +437,13 @@ public class Gui {
 		}
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * neuerVergleichAction: Beschreibung der Klasse
+	 * ---------------------------------------------
+	 * 
+	 * Diese Klasse definiert den ActionListener für den "neuer Vergleich" Button
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
 	private class neuerVergleichAction implements ActionListener {
 
 		@Override
@@ -335,6 +454,13 @@ public class Gui {
 		}	
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * startButtonAction: Beschreibung der Klasse
+	 * ---------------------------------------------
+	 * 
+	 * Diese Klasse definiert den ActionListener für den "Start" Button
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
 	public class startButtonAction implements ActionListener {
 
 		@Override
@@ -348,6 +474,13 @@ public class Gui {
 		}
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * nextStepButtonAction: Beschreibung der Klasse
+	 * ---------------------------------------------
+	 * 
+	 * Diese Klasse definiert den ActionListener für den "nä. Schritt" Button
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
 	public class nextStepButtonAction implements ActionListener {
 
 		@Override
@@ -356,6 +489,13 @@ public class Gui {
 		}
 	}
 	
+	/* ---------------------------------------------------------------------------------------------
+	 * loeschenButtonAction: Beschreibung der Klasse
+	 * ---------------------------------------------
+	 * 
+	 * Diese Klasse definiert den ActionListener für den "löschen" Button
+	 * 
+	 * --------------------------------------------------------------------------------------------- */
 	public class loeschenButtonAction implements ActionListener {
 
 		@Override
